@@ -41,7 +41,7 @@
   mysql_user:
     name: zabbix
     password: "{{ zabbix_mysql_password }}"
-    priv: 'zabbix.*:USAGE'
+    priv: 'zabbix.*:ALL'
     update_password: on_create
     state: present
 
