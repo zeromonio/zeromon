@@ -18,5 +18,4 @@
 - name: Run MySQL role if it has not already been done
   include_role:
     name: mysql
-    public: yes
   when: not mycnf.stat.exists
