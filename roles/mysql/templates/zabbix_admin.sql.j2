@@ -1,0 +1,2 @@
+-- {{ ansible_managed }}
+UPDATE `zabbix`.`users` SET `passwd` = '{{ zabbix_web_password | md5 }}' WHERE `userid` = 1;

@@ -23,6 +23,7 @@
     collation: utf8_bin
     encoding: utf8
     state: present
+  register: createdb
 
 - name: Import Zabbix database schema
   mysql_db:
@@ -31,18 +32,45 @@
     encoding: utf8
     target: '/usr/share/doc/zabbix-server-mysql/create.sql.gz'
     state: import
+  when: createdb|changed
 
-- name: Generate MySQL passwords
+- name: Generate passwords
   set_fact:
+    zabbix_web_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=12') }}"
     zabbix_mysql_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits') }}"
     root_mysql_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits') }}"
+
+- name: Template MySQL query to update Zabbix web administrator password
+  template:
+    src: 'zabbix_admin.sql.j2'
+    dest: '/usr/share/doc/zabbix-server-mysql/zabbix_admin.sql'
+    owner: root
+    group: root
+    mode: 0400
+  when: createdb|changed
+
+- name: Set Zabbix web administrator password using generated MySQL script
+  mysql_db:
+    name: zabbix
+    target: '/usr/share/doc/zabbix-server-mysql/zabbix_admin.sql'
+    state: import
+  when: createdb|changed
+  register: setzabbixweb
+
+- name: Store Zabbix web administrator password to a file for use later
+  copy:
+    content: "{{ zabbix_web_password }}"
+    dest: '/root/zabbix_admin_password'
+    mode: 0600
+    owner: root
+    group: root
+  when: setzabbixweb|changed
 
 - name: Create MySQL user account for Zabbix
   mysql_user:
     name: zabbix
     password: "{{ zabbix_mysql_password }}"
     priv: 'zabbix.*:ALL'
-    update_password: on_create
     state: present
 
 - name: Set MySQL root password
