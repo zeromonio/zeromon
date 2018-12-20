@@ -1,0 +1,47 @@
+---
+
+- name: Remove unnecessary Apache configuration symbolic links
+  file:
+    path: "/etc/apache2/conf-enabled/{{ item }}.conf"
+    state: absent
+  with_items:
+    - 'other-vhosts-access-log'
+    - 'serve-cgi-bin'
+    - 'zabbix'
+  notify:
+    - reload apache2
+
+- name: Enable Apache headers module
+  command: a2enmod headers
+  args:
+    creates: '/etc/apache2/mods-enabled/headers.load'
+  notify:
+    - reload apache2
+
+- name: Template Apache security configuration file
+  template:
+    src: 'security.conf.j2'
+    dest: '/etc/apache2/conf-available/security.conf'
+
+- name: Remove default Apache virtual host symbolic link
+  file:
+    path: '/etc/apache2/sites-enabled/000-default.conf'
+    state: absent
+  notify:
+    - reload apache2
+
+- name: Template Zabbix Apache virtual host
+  template:
+    src: 'zabbix.conf.j2'
+    dest: '/etc/apache2/sites-available/zabbix.conf'
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable Zabbix Apache virtual host
+  file:
+    src: '/etc/apache2/sites-available/zabbix.conf'
+    dest: '/etc/apache2/sites-enabled/zabbix.conf'
+    state: link
+  notify:
+    - reload apache2
