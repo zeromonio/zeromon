@@ -34,14 +34,6 @@
     update_password: on_create
     state: present
 
-- name: Configure Zabbix to use MySQL credentials
-  replace:
-    path: '/etc/zabbix/zabbix_server.conf'
-    regexp: '^# DBPassword='
-    replace: "DBPassword={{ zabbix_mysql_password }}""
-  notify:
-    - restart zabbix-server
-
 - name: Set MySQL root password
   mysql_user:
     check_implicit_admin: yes
@@ -62,7 +54,7 @@
   replace:
     path: '/etc/zabbix/zabbix_server.conf'
     regexp: '^# DBPassword='
-    replace: "DBPassword={{ zabbix_mysql_password }}""
+    replace: "DBPassword={{ zabbix_mysql_password }}"
   notify:
     - restart zabbix-server
 
