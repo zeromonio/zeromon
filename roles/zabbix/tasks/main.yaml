@@ -2,13 +2,18 @@
 
 - name: Install Zabbix package repository
   apt:
-    deb: "{{ zabbix_download_url }}"
+    deb: 'https://repo.zabbix.com/zabbix/4.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.0-2+bionic_all.deb'
 
 - name: Install Zabbix packages
   apt:
     name: "{{ zabbix_packages }}"
     state: latest
     update_cache: yes
+  vars:
+    zabbix_packages:
+    - 'zabbix-agent'
+    - 'zabbix-server-mysql'
+    - 'zabbix-frontend-php'
 
 - name: Check for my.cnf configuration file
   stat:
