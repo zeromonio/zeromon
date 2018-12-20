@@ -1,7 +1,0 @@
----
-
-- name: Ensure all packages are latest
-  apt:
-    name: '*'
-    state: latest
-    update_cache: yes

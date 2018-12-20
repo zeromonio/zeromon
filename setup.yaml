@@ -3,6 +3,5 @@
 - hosts: localhost
   become: yes
   roles:
-    - { role: common }
     - { role: zabbix }
     - { role: web }
