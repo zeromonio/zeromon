@@ -1,0 +1,75 @@
+---
+
+- name: Remove all anonymous MySQL user accounts
+  mysql_user:
+    name: ''
+    host_all: yes
+    state: absent
+
+- name: Remove MySQL test database
+  mysql_db:
+    name: test
+    state: absent
+
+- name: Create MySQL database for Zabbix
+  mysql_db:
+    name: zabbix
+    collation: utf8_bin
+    encoding: utf8
+    state: present
+
+- name: Import Zabbix database schema
+  mysql_db:
+    name: zabbix
+    collation: utf8_bin
+    encoding: utf8
+    target: '/usr/share/doc/zabbix-server-mysql/create.sql.gz'
+    state: import
+
+- name: Create MySQL user account for Zabbix
+  mysql_user:
+    name: zabbix
+    password: "{{ zabbix_mysql_password }}"
+    priv: 'zabbix.*:USAGE'
+    update_password: on_create
+    state: present
+
+- name: Configure Zabbix to use MySQL credentials
+  replace:
+    path: '/etc/zabbix/zabbix_server.conf'
+    regexp: '^# DBPassword='
+    replace: "DBPassword={{ zabbix_mysql_password }}""
+  notify:
+    - restart zabbix-server
+
+- name: Set MySQL root password
+  mysql_user:
+    check_implicit_admin: yes
+    name: root
+    host_all: yes
+    password: "{{ root_mysql_password }}"
+    state: present
+
+- name: Template my.cnf configuration file
+  template:
+    src: 'my.cnf.j2'
+    dest: '/root/.my.cnf'
+    owner: root
+    group: root
+    mode: 0400
+
+- name: Configure Zabbix server daemon to use MySQL credentials
+  replace:
+    path: '/etc/zabbix/zabbix_server.conf'
+    regexp: '^# DBPassword='
+    replace: "DBPassword={{ zabbix_mysql_password }}""
+  notify:
+    - restart zabbix-server
+
+- name: Configure Zabbix web interface to use MySQL credentials
+  template:
+    src: 'web_zabbix.conf.php.j2'
+    dest: '/etc/zabbix/web/zabbix.conf.php'
+    owner: www-data
+    group: www-data
+    mode: 0644

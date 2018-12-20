@@ -1,0 +1,22 @@
+---
+
+- name: Install Zabbix package repository
+  apt:
+    deb: "{{ zabbix_download_url }}"
+
+- name: Install Zabbix packages
+  apt:
+    name: "{{ zabbix_packages }}"
+    state: latest
+    update_cache: yes
+
+- name: Check for my.cnf configuration file
+  stat:
+    path: '/root/.my.cnf'
+  register: mycnf
+
+- name: Run MySQL role if it has not already been done
+  include_role:
+    name: mysql
+    public: yes
+  when: not mycnf.stat.exists
