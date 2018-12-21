@@ -1,6 +1,6 @@
 [Unit]
 Description=Zeromon bootstrap
-ConditionPathExists=/etc/zabbix/web/zabbix.conf.php
+ConditionPathExists=!/etc/zabbix/web/zabbix.conf.php
 
 [Service]
 Type=simple
