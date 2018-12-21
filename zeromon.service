@@ -3,7 +3,7 @@ Description=Zeromon bootstrap
 ConditionPathExists=/etc/zabbix/web/zabbix.conf.php
 
 [Service]
-Type=oneshot
+Type=simple
 ExecStart=bash /usr/local/bin/zeromon.sh
 
 [Install]
