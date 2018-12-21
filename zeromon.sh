@@ -4,7 +4,7 @@ apt update &&
 apt -y install ansible &&
 
 mkdir /tmp/ansible_{local,remote} &&
-cat > /root/.ansible.cfg <<'EOF'
+cat > /etc/ansible/ansible.cfg <<'EOF'
 [defaults]
 remote_tmp=/tmp/ansible_remote
 local_tmp=/tmp/ansible_local
