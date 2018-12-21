@@ -12,8 +12,9 @@ The password for the Zabbix `Admin` web user can be found by connecting to your 
 #### Pricing
 
 The cost for usage of this AMI is $0.05 USD per hour (or basically, $36.00 USD per month) for all instance types in all regions.
+Unfortunately, the AMI is not currently available within the Amazon GovCloud region at this time.
+
 We also offer a 7-day 100% money-back guarantee.
-Unfortunately, the AMI is not currently within the Amazon GovCloud though.
 
 #### Support
 
