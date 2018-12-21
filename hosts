@@ -1,1 +1,1 @@
-localhost ansible_connection=local remote_tmp=/tmp/ansible_remote local_tmp=/tmp/ansible_local retry_files_enabled=False
+localhost ansible_connection=local
