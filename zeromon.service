@@ -4,7 +4,7 @@ ConditionPathExists=/etc/zabbix/web/zabbix.conf.php
 
 [Service]
 Type=simple
-ExecStart=bash /usr/local/bin/zeromon.sh
+ExecStart=/usr/local/bin/zeromon.sh
 
 [Install]
 WantedBy=multi-user.target
