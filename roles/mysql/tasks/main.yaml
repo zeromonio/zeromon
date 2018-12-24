@@ -32,7 +32,7 @@
     encoding: utf8
     target: '/usr/share/doc/zabbix-server-mysql/create.sql.gz'
     state: import
-  when: createdb|changed
+  when: createdb is changed
 
 - name: Generate passwords
   set_fact:
@@ -47,14 +47,14 @@
     owner: root
     group: root
     mode: 0400
-  when: createdb|changed
+  when: createdb is changed
 
 - name: Set Zabbix web administrator password using generated MySQL script
   mysql_db:
     name: zabbix
     target: '/usr/share/doc/zabbix-server-mysql/zabbix_admin.sql'
     state: import
-  when: createdb|changed
+  when: createdb is changed
   register: setzabbixweb
 
 - name: Store Zabbix web administrator password to a file for use later
@@ -64,7 +64,7 @@
     mode: 0600
     owner: root
     group: root
-  when: setzabbixweb|changed
+  when: setzabbixweb is changed
 
 - name: Create MySQL user account for Zabbix
   mysql_user:
