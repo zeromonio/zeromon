@@ -49,9 +49,9 @@ rm /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys && history -c
 
 The above steps do the following:
 - Place a script ([`zeromon.sh`](zeromon.sh`)) within `/usr/local/bin/` that will:
- * Install and configure Ansible
- * Clone this Ansible repository
- * Execute this Ansible playbook ([`setup.yaml`](setup.yaml))
+    * Install and configure Ansible
+    * Clone this Ansible repository
+    * Execute this Ansible playbook ([`setup.yaml`](setup.yaml))
 - Set up a `systemd` service ([`zeromon.sh`](zeromon.sh)) to execute the script that was just placed (`/usr/local/bin/zeromon.sh`) upon the servers next boot
 - Remove all SSH authorized keys from the root and `ubuntu` user accounts as well as clear the root user account bash history
 
