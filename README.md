@@ -36,6 +36,13 @@ Per the [Ansible](https://www.ansible.com/) automation within this repository, t
 - [PHP 7.2](https://secure.php.net/)
 - [MariaDB](https://mariadb.org/)
 
+##### Security
+
+A number of steps were taken within the playbook in this repository to secure the installation of Zabbix and the server as a whole.
+Specifically, random passwords are generated for the Zabbix `Admin` web user as well as both the `zabbix` and `root` MySQL passwords.
+Default anonymous MySQL user accounts are removed as well.
+Furthermore, configuration changes are made to the default Apache installation to disable unnecessary modules, prevent exposing the version of Apache to the public, and avoid "click-jacking".
+
 #### Preparation
 
 In order to create the Zeromon AMI, I have been building it from the official AWS Ubuntu 18.04 LTS AMI (`ami-0ac019f4fcb7cb7e6`).
