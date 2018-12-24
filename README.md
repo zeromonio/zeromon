@@ -39,7 +39,7 @@ Per the [Ansible](https://www.ansible.com/) automation within this repository, t
 #### Preparation
 
 In order to create the Zeromon AMI, I have been building it from the official AWS Ubuntu 18.04 LTS AMI (`ami-0ac019f4fcb7cb7e6`).
-Once I create an EC2 instance using this official Ubuntu AMI, I run the following commands to prepare and create an AMI it:
+Once I create an EC2 instance using this official Ubuntu AMI, I run the following commands to create our own AMI from it:
 
 ```
 cd /usr/local/bin/ && wget https://raw.githubusercontent.com/ericoc/zeromon/master/zeromon.sh && chmod +x zeromon.sh &&
@@ -53,7 +53,7 @@ The above steps do the following:
     * Clone this Ansible repository
     * Execute this Ansible playbook ([`setup.yaml`](setup.yaml))
 - Set up a `systemd` service ([`zeromon.sh`](zeromon.sh)) to execute the script that was just placed (`/usr/local/bin/zeromon.sh`) upon the servers next boot
-- Remove all SSH authorized keys from the root and `ubuntu` user accounts as well as clear the root user account bash history
+- Remove all SSH authorized keys from the `root` and `ubuntu` user accounts as well as clear the root user account bash history
 
-I then create an AMI from the running EC2 instance which I have just prepared with the above commands..
+I then create an AMI from the running EC2 instance which I have just prepared with the above commands.
 Upon the creation and boot of a second new EC2 instance using the AMI that was just created, `systemd` should execute `/usr/local/bin/zeromon.sh` which will install and configure Ansible before cloning this repository and executing its playbook to completely set up a working Zabbix installation.
