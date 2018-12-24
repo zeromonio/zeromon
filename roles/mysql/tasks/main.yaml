@@ -40,7 +40,7 @@
     zabbix_mysql_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits') }}"
     root_mysql_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits') }}"
 
-- name: Template MySQL query to update Zabbix web administrator password
+- name: Template MySQL query to update Zabbix web administrator password and disable guests
   template:
     src: 'zabbix_admin.sql.j2'
     dest: '/usr/share/doc/zabbix-server-mysql/zabbix_admin.sql'
@@ -49,7 +49,7 @@
     mode: 0400
   when: createdb is changed
 
-- name: Set Zabbix web administrator password using generated MySQL script
+- name: Set Zabbix web administrator password and disable guests using generated MySQL script
   mysql_db:
     name: zabbix
     target: '/usr/share/doc/zabbix-server-mysql/zabbix_admin.sql'

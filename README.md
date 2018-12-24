@@ -40,6 +40,7 @@ Per the [Ansible](https://www.ansible.com/) automation within this repository, t
 
 A number of steps were taken within the playbook in this repository to secure the installation of Zabbix and the server as a whole.
 Specifically, random passwords are generated for the Zabbix `Admin` web user as well as both the `zabbix` and `root` MySQL passwords.
+No "Guest" access is allowed to the Zabbix web user interface.
 Default anonymous MySQL user accounts are removed as well.
 Furthermore, configuration changes are made to the default Apache installation to disable unnecessary modules, prevent exposing the version of Apache to the public, and avoid "click-jacking".
 
