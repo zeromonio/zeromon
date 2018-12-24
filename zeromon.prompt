@@ -1,14 +1,29 @@
 #!/bin/bash
 
+# See https://github.com/ericoc/zeromon for more information
+
+# Welcome the user before giving authentication information for the Zabbix web UI
 echo
 echo "Welcome to your Zeromon Zabbix installation!"
 echo
 
-public_ip=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
-zabbix_url="http://${public_ip}/"
-echo "You should have access to your Zabbix installation at:"
+echo "You can log in at:"
 echo
-echo "${zabbix_url}"
+
+# Determine if the server has a public DNS/host name and use that if so
+public_hostname=$(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
+if [ ! -z "$public_hostname" ]
+then
+  zabbix_url="$public_hostname"
+
+# Otherwise, just use the public IPv4 address
+else
+  public_ipv4=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
+  zabbix_url="$public_ipv4"
+fi
+
+# Display the URL along with credentials for the user to log in to the Zabbix web interface
+echo "http://${zabbix_url}/"
 echo
 
 zabbix_admin_password=$(cat /root/zabbix_admin_password)
@@ -16,5 +31,8 @@ echo "User name: Admin"
 echo "Password: ${zabbix_admin_password}"
 echo
 
+# Some final information telling the user about how to suppress this information and how to contact Zeromon for support
+echo 'You can run "rm /root/.zeromon" to suppress this message, but your Zabbix Admin user web password can still be found in /root/zabbix_admin_password'
+echo
 echo 'Please visit https://zeromon.io/ or contact support@zeromon.io if you have any questions or concerns!'
 echo

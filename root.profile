@@ -4,10 +4,11 @@ if [ "$BASH" ]; then
   if [ -f ~/.bashrc ]; then
     . ~/.bashrc
   fi
-fi
 
-if [ -s "/root/zabbix_admin_password" ]; then
-  . ~/.zeromon
+  # See https://github.com/ericoc/zeromon for more information
+  if [ -f ~/.zeromon ]; then
+    . ~/.zeromon
+  fi
 fi
 
 mesg n || true
