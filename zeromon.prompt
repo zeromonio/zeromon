@@ -6,14 +6,15 @@ echo
 
 public_ip=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
 zabbix_url="http://${public_ip}/"
-echo "You should have access to your Zabbix installation by visiting:"
+echo "You should have access to your Zabbix installation at:"
 echo
 echo "${zabbix_url}"
 echo
 
 zabbix_admin_password=$(cat /root/zabbix_admin_password)
-echo "You should be able to log in with the following credentials: "
-echo
 echo "User name: Admin"
 echo "Password: ${zabbix_admin_password}"
+echo
+
+echo 'Please visit https://zeromon.io/ or contact support@zeromon.io if you have any questions or concerns!'
 echo
