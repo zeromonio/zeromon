@@ -4,4 +4,3 @@
   become: yes
   roles:
     - { role: zabbix }
-    - { role: web }

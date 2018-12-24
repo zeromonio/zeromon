@@ -25,6 +25,16 @@
     name: mysql
   when: not mycnf.stat.exists
 
+- name: Check for Zabbix web virtual host configuration file
+  stat:
+    path: '/etc/apache2/sites-available/zabbix.conf'
+  register: vhost
+
+- name: Run web role if it has not already been done
+  include_role:
+    name: web
+  when: not vhost.stat.exists
+
 - name: Ensure that Zabbix server starts at boot
   command: systemctl enable zabbix-server
   args:

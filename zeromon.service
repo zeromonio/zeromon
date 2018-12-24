@@ -1,6 +1,8 @@
 [Unit]
 Description=Zeromon bootstrap
-ConditionPathExists=!/etc/zabbix/web/zabbix.conf.php
+ConditionPathExists=!/etc/systemd/system/multi-user.target.wants/zabbix-server.service
+ConditionPathExists=!/etc/systemd/system/multi-user.target.wants/zabbix-agent.service
+ConditionPathExists=!/root/zabbix_admin_password
 
 [Service]
 Type=simple
