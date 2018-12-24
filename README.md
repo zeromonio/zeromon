@@ -20,6 +20,8 @@ We also offer a 7-day 100% money-back guarantee.
 
 Any questions or concerns can be sent to support@zeromon.io
 
+---
+
 ### Technical Details
 
 None of this is super critical information, but is mostly for reference to any one who happens to be curious.
