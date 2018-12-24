@@ -34,7 +34,7 @@ Per the [Ansible](https://www.ansible.com/) automation within this repository, t
 - [Zabbix 4.x](https://www.zabbix.com/)
 - [Apache 2.4](https://httpd.apache.org/)
 - [PHP 7.2](https://secure.php.net/)
-- [MariaDB](https://mariadb.org/)
+- [MariaDB 10.1](https://mariadb.org/)
 
 ##### Security
 
