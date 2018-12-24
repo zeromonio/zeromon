@@ -1,2 +1,3 @@
 -- {{ ansible_managed }}
 UPDATE `zabbix`.`users` SET `passwd` = '{{ zabbix_web_password | md5 }}' WHERE `userid` = 1;
+UPDATE `zabbix`.`usrgrp` SET `users_status` = 1 WHERE `name` = 'Guests';
