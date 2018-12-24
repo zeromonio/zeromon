@@ -64,6 +64,7 @@
     mode: 0600
     owner: root
     group: root
+  no_log: True
   when: setzabbixweb is changed
 
 - name: Create MySQL user account for Zabbix
@@ -93,6 +94,7 @@
     path: '/etc/zabbix/zabbix_server.conf'
     regexp: '^# DBPassword='
     replace: "DBPassword={{ zabbix_mysql_password }}"
+  no_log: True
   notify:
     - restart zabbix-server
 
@@ -102,4 +104,4 @@
     dest: '/etc/zabbix/web/zabbix.conf.php'
     owner: www-data
     group: www-data
-    mode: 0644
+    mode: 0640
