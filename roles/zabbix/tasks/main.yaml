@@ -24,3 +24,13 @@
   include_role:
     name: mysql
   when: not mycnf.stat.exists
+
+- name: Ensure that Zabbix server and agent start at boot
+  systemd:
+    name: "{{ zabbix_services }}"
+    enabled: yes
+    masked: no
+  vars:
+    zabbix_services:
+    - 'zabbix-agent'
+    - 'zabbix-server'
