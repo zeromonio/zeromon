@@ -41,6 +41,6 @@
     creates: /etc/systemd/system/multi-user.target.wants/zabbix-server.service
 
 - name: Ensure that Zabbix agent starts at boot
-    command: systemctl enable zabbix-agent
+  command: systemctl enable zabbix-agent
   args:
     creates: /etc/systemd/system/multi-user.target.wants/zabbix-agent.service
