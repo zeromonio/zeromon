@@ -24,12 +24,13 @@ Any questions or concerns can be sent to support@zeromon.io
 
 ### Technical Details
 
-None of this is super critical information, but is mostly for reference to any one who happens to be curious.
+The following technical information is simply a reference for any one who may be curious about how the AMI is built.
 
 #### Software
 
-Per the [Ansible](https://www.ansible.com/) automation within this repository, the following software is installed upon the first boot of the prepared AMI:
+Per the automation within this repository, the following software is installed upon the first boot of an EC2 instance launched with our AMI:
 
+- [Ansible](https://www.ansible.com/)
 - [Ubuntu 18.04 LTS](https://www.ubuntu.com/)
 - [Zabbix 4.x](https://www.zabbix.com/)
 - [Apache 2.4](https://httpd.apache.org/)
@@ -50,26 +51,18 @@ A number of steps were taken within the playbook in this repository to secure th
 
 #### Preparation
 
-In order to create the Zeromon AMI, I have been building it from the official AWS Ubuntu 18.04 LTS AMI (`ami-0ac019f4fcb7cb7e6`).
-Once I create an EC2 instance using this official Ubuntu AMI, I run the following commands to create our own AMI from it:
+In order to create the Zeromon AMI, we have been building it from the official AWS Ubuntu 18.04 LTS AMI (`ami-0ac019f4fcb7cb7e6`) and using [cloud-init](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html#amazon-linux-cloud-init).
+Once an EC2 instance is launched using this official Ubuntu AMI, we run the following commands before creating our own image:
 
 ```
-sudo apt update &&
-sudo apt install ansible &&
-sudo wget -q https://raw.githubusercontent.com/ericoc/zeromon/master/zeromon.sh -O /usr/local/bin/zeromon.sh &&
-sudo chmod +x /usr/local/bin/zeromon.sh &&
-sudo wget https://raw.githubusercontent.com/ericoc/zeromon/master/zeromon.service -O /lib/systemd/system/zeromon.service &&
-sudo systemctl enable zeromon &&
-sudo rm /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys
+sudo wget -q https://github.com/ericoc/zeromon/blob/master/cloud-config -O /etc/cloud/cloud.cfg.d/99_zeromon.cfg
+sudo rm /etc/ssh/ssh_host_* /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys
 ```
 
-The above steps do the following:
-- Place a script ([`zeromon.sh`](zeromon.sh`)) within `/usr/local/bin/` which will:
-    * Clone this Ansible repository
-    * Execute this Ansible playbook: ([`setup.yaml`](setup.yaml))
+This places our [`cloud-config`](cloud-config) script at `/etc/cloud/cloud.cfg.d/99_zeromon.cfg` which will do the following upon the first boot of a newly deployed EC2 instance:
+    * Install Ansible
+    * Clone this Git repository and configure Ansible for local execution on the instance
+    * Execute this Ansible playbook to completely set up a working Zabbix installation: ([`setup.yaml`](setup.yaml))
     * Place instructions in the `root` user prompt on how to log in to the Zabbix web user interface
-- Set up a `systemd` service ([`zeromon.sh`](zeromon.sh)) to execute the script that was just placed (`/usr/local/bin/zeromon.sh`) upon the servers next boot
-- Remove all SSH authorized keys from the `root` and `ubuntu` user accounts as well as clear the root user account bash history
 
-I then create an AMI from the running EC2 instance which I have just prepared with the above commands.
-Upon the creation and boot of a second new EC2 instance using the AMI that was just created, `systemd` should execute `/usr/local/bin/zeromon.sh` which will install and configure Ansible before cloning this repository and executing its playbook to completely set up a working Zabbix installation.
+It also removes our SSH host keys as well as authorized SSH keys from the `root` and `ubuntu` user accounts. They will be replaced with your own by AWS upon your first launch.
