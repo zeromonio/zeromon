@@ -14,4 +14,4 @@ runcmd:
  - [ sh, -c, "cat /usr/local/src/zeromon/root.profile > /root/.profile" ]
  - [ sh, -c, "cat /usr/local/src/zeromon/zeromon.prompt > /root/.zeromon" ]
 
-output : { all : '| tee -a /var/log/cloud-init-output.log' }
+output : { all : '| tee -a /var/log/cloud-init-output-zeromon.log' }
