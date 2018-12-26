@@ -1,0 +1,15 @@
+---
+
+- name: Install mail packages
+  apt:
+    name: mailutils
+    state: latest
+    update_cache: yes
+
+- name: Configure mail daemon to only listen locally
+  replace:
+    path: '/etc/postfix/main.cf'
+    regexp: '^inet_interfaces'
+    replace: 'inet_interfaces = 127.0.0.1'
+  notify:
+    - restart postfix
