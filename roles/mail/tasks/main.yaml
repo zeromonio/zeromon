@@ -9,7 +9,7 @@
 - name: Configure mail daemon to only listen locally
   replace:
     path: '/etc/postfix/main.cf'
-    regexp: '^inet_interfaces'
+    regexp: '^inet_interfaces = all'
     replace: 'inet_interfaces = 127.0.0.1'
   notify:
     - restart postfix
