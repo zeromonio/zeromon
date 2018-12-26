@@ -1,0 +1,17 @@
+#cloud-config
+repo_update: true
+
+packages:
+ - ansible
+
+runcmd:
+ - [ sh, -c, "git clone https://github.com/ericoc/zeromon.git /usr/local/src/zeromon" ]
+ - [ sh, -c, "mkdir /tmp/ansible_local" ]
+ - [ sh, -c, "mkdir /tmp/ansible_remote" ]
+ - [ sh, -c, "cat /usr/local/src/zeromon/ansible.cfg > /etc/ansible/ansible.cfg" ]
+ - [ sh, -c, "ansible-playbook -i /usr/local/src/zeromon/hosts /usr/local/src/zeromon/setup.yaml" ]
+ - [ sh, -c, "echo >> /root/zabbix_admin_password" ]
+ - [ sh, -c, "cat /usr/local/src/zeromon/root.profile > /root/.profile" ]
+ - [ sh, -c, "cat /usr/local/src/zeromon/zeromon.prompt > /root/.zeromon" ]
+
+output : { all : '| tee -a /var/log/cloud-init-output.log' }
