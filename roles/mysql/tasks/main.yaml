@@ -49,6 +49,16 @@
     mode: 0400
   when: createdb is changed
 
+- name: Template MySQL query to update Zabbix mail server
+  template:
+    src: 'zabbix_media.sql.j2'
+    dest: '/usr/share/doc/zabbix-server-mysql/zabbix_media.sql'
+    owner: root
+    group: root
+    mode: 0400
+  when: createdb is changed
+  register: storemail
+
 - name: Set Zabbix web administrator password and disable guests using generated MySQL script
   mysql_db:
     name: zabbix
@@ -66,6 +76,13 @@
     group: root
   no_log: True
   when: setzabbixweb is changed
+
+- name: Configure the local mail server that Zabbix should use
+  mysql_db:
+    name: zabbix
+    target: '/usr/share/doc/zabbix-server-mysql/zabbix_media.sql'
+    state: import
+  when: storemail is changed
 
 - name: Create MySQL user account for Zabbix
   mysql_user:
