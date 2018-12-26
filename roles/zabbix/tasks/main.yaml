@@ -15,6 +15,13 @@
     - 'zabbix-server-mysql'
     - 'zabbix-frontend-php'
 
+- name: Secure ownership and permissions of Zabbix server configuration file
+  file:
+    path: '/etc/zabbix/zabbix_server.conf'
+    owner: root
+    group: zabbix
+    mode: 0640
+
 - name: Check for my.cnf configuration file
   stat:
     path: '/root/.my.cnf'
