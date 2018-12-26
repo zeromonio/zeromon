@@ -55,10 +55,16 @@ In order to create the Zeromon AMI, we have been building it from the official A
 Once an EC2 instance is launched using this official Ubuntu AMI, we only do a few steps to prepare the creation of our own image:
 
 Update everything:
-`sudo apt update && sudo apt -y upgrade`
+
+```
+sudo apt update && sudo apt -y upgrade
+```
 
 Place the [`cloud-config`](cloud-config) script from this repository at `/etc/cloud/cloud.cfg.d/99_zeromon.cfg`:
-`sudo wget -q https://raw.githubusercontent.com/ericoc/zeromon/master/cloud-config -O /etc/cloud/cloud.cfg.d/99_zeromon.cfg`
+
+```
+sudo wget -q https://raw.githubusercontent.com/ericoc/zeromon/master/cloud-config -O /etc/cloud/cloud.cfg.d/99_zeromon.cfg
+```
 
 This script will do the following upon the first boot of a newly deployed EC2 instance:
 - Install Ansible
