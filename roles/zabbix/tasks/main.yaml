@@ -18,8 +18,8 @@
 - name: Configure Zabbix agent to only expect local connections
   replace:
     path: '/etc/zabbix/zabbix_agentd.conf'
-    regexp: '^# ListenIP='
-    replace: "ListenIP=127.0.0.1"
+    regexp: '^# ListenIP=0.0.0.0'
+    replace: 'ListenIP=127.0.0.1'
   notify:
     - restart zabbix-agent
 
