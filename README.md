@@ -60,9 +60,9 @@ sudo rm /etc/ssh/ssh_host_* /root/.ssh/authorized_keys /home/ubuntu/.ssh/authori
 ```
 
 This places our [`cloud-config`](cloud-config) script at `/etc/cloud/cloud.cfg.d/99_zeromon.cfg` which will do the following upon the first boot of a newly deployed EC2 instance:
-    * Install Ansible
-    * Clone this Git repository and configure Ansible for local execution on the instance
-    * Execute this Ansible playbook to completely set up a working Zabbix installation: ([`setup.yaml`](setup.yaml))
-    * Place instructions in the `root` user prompt on how to log in to the Zabbix web user interface
+- Install Ansible
+- Clone this Git repository and configure Ansible for local execution on the instance
+- Execute this Ansible playbook to completely set up a working Zabbix installation: ([`setup.yaml`](setup.yaml))
+- Place instructions in the `root` user prompt on how to log in to the Zabbix web user interface
 
 It also removes our SSH host keys as well as authorized SSH keys from the `root` and `ubuntu` user accounts. They will be replaced with your own by AWS upon your first launch.
