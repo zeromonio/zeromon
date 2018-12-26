@@ -10,18 +10,10 @@
 apt update &&
 apt -y install ansible &&
 
-# Configure Ansible for local use
-mkdir /tmp/ansible_{local,remote} &&
-cat > /etc/ansible/ansible.cfg <<'EOF'
-[defaults]
-remote_tmp=/tmp/ansible_remote
-local_tmp=/tmp/ansible_local
-retry_files_enabled=False
-ansible_managed=ANSIBLE MANAGED / see https://github.com/ericoc/zeromon for more information
-EOF
-
-# Clone the Zeromon Zabbix setup repository locally and run its playbook
+# Clone the Zeromon Zabbix setup repository locally, configure Ansible for local use, and run the playbook
 git clone https://github.com/ericoc/zeromon.git /usr/local/src/zeromon &&
+mkdir /tmp/ansible_{local,remote} &&
+cat /usr/local/src/zeromon/ansible.cfg > /etc/ansible/ansible.cfg &&
 ansible-playbook -i /usr/local/src/zeromon/hosts /usr/local/src/zeromon/setup.yaml &&
 
 # Append a line to this file just to make it more presentable to users
