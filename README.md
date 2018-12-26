@@ -1,7 +1,7 @@
 # Zeromon
 
 [Zeromon](https://zeromon.io/) provides a pre-built Zabbix installation via an Amazon Machine Image (AMI) on Amazon Web Services (AWS).
-The AMI (`ami-00a28cc59e938e179`) is built using this repository.
+The AMI (`ami-0ff0b50cc5f71fb16`) is built via and dependent upon this Git repository.
 
 ### Usage
 
