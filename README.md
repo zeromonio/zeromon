@@ -55,7 +55,7 @@ In order to create the Zeromon AMI, we have been building it from the official A
 Once an EC2 instance is launched using this official Ubuntu AMI, we run the following commands before creating our own image:
 
 ```
-sudo wget -q https://github.com/ericoc/zeromon/blob/master/cloud-config -O /etc/cloud/cloud.cfg.d/99_zeromon.cfg
+sudo wget -q https://raw.githubusercontent.com/ericoc/zeromon/master/cloud-config -O /etc/cloud/cloud.cfg.d/99_zeromon.cfg
 sudo rm /etc/ssh/ssh_host_* /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys
 ```
 
