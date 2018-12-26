@@ -11,10 +11,10 @@ The password for the Zabbix `Admin` web user can be found by connecting to your 
 
 ### Pricing
 
-The cost for usage of this AMI is $0.05 USD per hour (or basically, $36.00 USD per month) for all instance types in all regions.
-Unfortunately, the AMI is not currently available within the Amazon GovCloud region at this time.
+The cost for usage of this AMI software is $0.05 USD per hour (or basically, $36.00 USD per month) for all instance types in all regions.
+However, note that this $0.05/hour is billed on top of the instance pricing which is calculated separately and dependent upon Amazon based on the region and instance type.
 
-We also offer a 7-day 100% money-back guarantee.
+We also offer a 7-day 100% money-back guarantee. Unfortunately, the AMI is not currently available within the Amazon GovCloud region at this time.
 
 ### Support
 
@@ -38,11 +38,15 @@ Per the [Ansible](https://www.ansible.com/) automation within this repository, t
 
 ##### Security
 
-A number of steps were taken within the playbook in this repository to secure the installation of Zabbix and the server as a whole.
-Specifically, random passwords are generated for the Zabbix `Admin` web user as well as both the `zabbix` and `root` MySQL passwords.
-No "Guest" access is allowed to the Zabbix web user interface.
-Default anonymous MySQL user accounts are removed as well.
-Furthermore, configuration changes are made to the default Apache installation to disable unnecessary modules, prevent exposing the version of Apache to the public, and avoid "click-jacking".
+A number of steps were taken within the playbook in this repository to secure the installation of Zabbix and the server as a whole:
+- Default anonymous MySQL user accounts are removed
+- Random passwords are generated for both the `zabbix` and `root` MySQL passwords
+- A random password is generated for the Zabbix `Admin` web user
+- No "Guest" access is allowed to the Zabbix web user interface
+- Configuration changes are made to the default web server (Apache) installation which:
+    * Avoid "click-jacking"
+    * Disable unnecessary modules
+    * Prevent exposing the operating system and version number
 
 #### Preparation
 
@@ -56,10 +60,11 @@ rm /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys && history -c
 ```
 
 The above steps do the following:
-- Place a script ([`zeromon.sh`](zeromon.sh`)) within `/usr/local/bin/` that will:
+- Place a script ([`zeromon.sh`](zeromon.sh`)) within `/usr/local/bin/` which will:
     * Install and configure Ansible
     * Clone this Ansible repository
-    * Execute this Ansible playbook ([`setup.yaml`](setup.yaml))
+    * Execute this Ansible playbook: ([`setup.yaml`](setup.yaml))
+    * Place instructions in the `root` user prompt on how to log in to the Zabbix web user interface
 - Set up a `systemd` service ([`zeromon.sh`](zeromon.sh)) to execute the script that was just placed (`/usr/local/bin/zeromon.sh`) upon the servers next boot
 - Remove all SSH authorized keys from the `root` and `ubuntu` user accounts as well as clear the root user account bash history
 
