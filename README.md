@@ -52,17 +52,24 @@ A number of steps were taken within the playbook in this repository to secure th
 #### Preparation
 
 In order to create the Zeromon AMI, we have been building it from the official AWS Ubuntu 18.04 LTS AMI (`ami-0ac019f4fcb7cb7e6`) and using [cloud-init](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html#amazon-linux-cloud-init).
-Once an EC2 instance is launched using this official Ubuntu AMI, we run the following commands before creating our own image:
+Once an EC2 instance is launched using this official Ubuntu AMI, we only do a few steps to prepare the creation of our own image:
 
-```
-sudo wget -q https://raw.githubusercontent.com/ericoc/zeromon/master/cloud-config -O /etc/cloud/cloud.cfg.d/99_zeromon.cfg
-sudo rm /etc/ssh/ssh_host_* /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys
-```
+Update everything:
+`sudo apt update && sudo apt -y upgrade`
 
-This places our [`cloud-config`](cloud-config) script at `/etc/cloud/cloud.cfg.d/99_zeromon.cfg` which will do the following upon the first boot of a newly deployed EC2 instance:
+Place the [`cloud-config`](cloud-config) script from this repository at `/etc/cloud/cloud.cfg.d/99_zeromon.cfg`:
+`sudo wget -q https://raw.githubusercontent.com/ericoc/zeromon/master/cloud-config -O /etc/cloud/cloud.cfg.d/99_zeromon.cfg`
+
+This script will do the following upon the first boot of a newly deployed EC2 instance:
 - Install Ansible
 - Clone this Git repository and configure Ansible for local execution on the instance
-- Execute this Ansible playbook to completely set up a working Zabbix installation: ([`setup.yaml`](setup.yaml))
+- Execute our Ansible playbook and role ([`setup.yaml`](setup.yaml)) to completely set up a working Zabbix installation
 - Place instructions in the `root` user prompt on how to log in to the Zabbix web user interface
 
-It also removes our SSH host keys as well as authorized SSH keys from the `root` and `ubuntu` user accounts. They will be replaced with your own by AWS upon your first launch.
+And finally, just before clearing bash history and building our AMI, we remove the existing SSH host keys as well as our authorized SSH keys from the `root` and `ubuntu` user accounts.
+They will be replaced with your own keys by AWS upon your first launch of your own instance.
+
+```
+sudo rm /etc/ssh/ssh_host_* /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys
+history -c
+```
