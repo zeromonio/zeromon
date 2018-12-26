@@ -54,7 +54,8 @@ In order to create the Zeromon AMI, I have been building it from the official AW
 Once I create an EC2 instance using this official Ubuntu AMI, I run the following commands to create our own AMI from it:
 
 ```
-sudo apt install ansible &&
+sudo apt update &&
+apt install ansible &&
 sudo wget -q https://raw.githubusercontent.com/ericoc/zeromon/master/zeromon.sh -O /usr/local/bin/zeromon.sh &&
 sudo chmod +x zeromon.sh &&
 sudo wget https://raw.githubusercontent.com/ericoc/zeromon/master/zeromon.service -O /lib/systemd/system/zeromon.service &&
