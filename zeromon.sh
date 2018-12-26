@@ -6,10 +6,6 @@
 
 # systemd will execute this script once upon the first boot after a Zeromon Amazon Machine Image (AMI) deployment
 
-# Install Ansible
-apt update &&
-apt -y install ansible &&
-
 # Clone the Zeromon Zabbix setup repository locally, configure Ansible for local use, and run the playbook
 git clone https://github.com/ericoc/zeromon.git /usr/local/src/zeromon &&
 mkdir /tmp/ansible_{local,remote} &&

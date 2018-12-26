@@ -54,14 +54,16 @@ In order to create the Zeromon AMI, I have been building it from the official AW
 Once I create an EC2 instance using this official Ubuntu AMI, I run the following commands to create our own AMI from it:
 
 ```
-cd /usr/local/bin/ && wget https://raw.githubusercontent.com/ericoc/zeromon/master/zeromon.sh && chmod +x zeromon.sh &&
-cd /lib/systemd/system/ && wget https://raw.githubusercontent.com/ericoc/zeromon/master/zeromon.service && systemctl enable zeromon &&
-rm /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys && history -c
+sudo apt install ansible &&
+sudo wget -q https://raw.githubusercontent.com/ericoc/zeromon/master/zeromon.sh -O /usr/local/bin/zeromon.sh &&
+sudo chmod +x zeromon.sh &&
+sudo wget https://raw.githubusercontent.com/ericoc/zeromon/master/zeromon.service -O /lib/systemd/system/zeromon.service &&
+sudo systemctl enable zeromon &&
+sudo rm /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys
 ```
 
 The above steps do the following:
 - Place a script ([`zeromon.sh`](zeromon.sh`)) within `/usr/local/bin/` which will:
-    * Install and configure Ansible
     * Clone this Ansible repository
     * Execute this Ansible playbook: ([`setup.yaml`](setup.yaml))
     * Place instructions in the `root` user prompt on how to log in to the Zabbix web user interface
