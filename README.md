@@ -57,7 +57,7 @@ Once I create an EC2 instance using this official Ubuntu AMI, I run the followin
 sudo apt update &&
 sudo apt install ansible &&
 sudo wget -q https://raw.githubusercontent.com/ericoc/zeromon/master/zeromon.sh -O /usr/local/bin/zeromon.sh &&
-sudo chmod +x zeromon.sh &&
+sudo chmod +x /usr/local/bin/zeromon.sh &&
 sudo wget https://raw.githubusercontent.com/ericoc/zeromon/master/zeromon.service -O /lib/systemd/system/zeromon.service &&
 sudo systemctl enable zeromon &&
 sudo rm /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys
