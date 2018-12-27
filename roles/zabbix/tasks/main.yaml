@@ -63,3 +63,19 @@
   command: systemctl enable zabbix-agent
   args:
     creates: /etc/systemd/system/multi-user.target.wants/zabbix-agent.service
+
+- name: Template Zabbix web access instructions for root user
+  template:
+    src: 'zeromon.access.j2'
+    dest: '/root/.zeromon'
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Template root user shell profile to include Zabbix access instructions
+  template:
+    src: 'root.profile.j2'
+    dest: '/root/.profile'
+    owner: root
+    group: root
+    mode: 0644
