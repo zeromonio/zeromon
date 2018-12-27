@@ -14,13 +14,22 @@ Once logged in via SSH as the `ubuntu` user, simply run `sudo -i` for instructio
 ### Pricing
 
 The cost for usage of this AMI software is $0.05 USD per hour (or basically, $36.00 USD per month) for all instance types in all regions, in addition to the EC2 pricing itself.
-Note that this $0.05/hour is billed on top of the instance pricing which is calculated separately and dependent upon Amazon based on the region and instance type.
 
-We also offer a 7-day 100% money-back guarantee. Unfortunately, the AMI is not currently available within the Amazon GovCloud region at this time.
+We also offer a 7-day 100% money-back guarantee.
+
+#### Instance Type
+
+Note that $0.05/hour is billed on top of the AWS instance pricing which is calculated separately and dependent upon Amazon based on the region and instance type.
+We generally recommend starting with a `t3.medium` instance type, but you may be able to use a `t3.small` for a smaller environment.
+However, a `t3.large` (or bigger) may be necessary depending upon the number of instances that you plan to monitor and pollers you configure within the Zabbix server.
+
+You may want to experiment with other instance types as well to determine what works best for you and your environment - please feel free to let us know!
 
 ### Support
 
 Any questions or concerns can be sent to support@zeromon.io and we will do our best to help you out!
+
+Unfortunately, the AMI is not currently available within the Amazon GovCloud region at this time.
 
 ---
 
