@@ -31,6 +31,10 @@ echo "User name: Admin"
 echo "Password: ${zabbix_admin_password}"
 echo
 
+# Tell the user how to set up e-mail notifications
+echo "Once logged in, you can visit the 'Media' tab at http://${zabbix_url}/profile.php#mediaTab to specify an e-mail address to receive notifications."
+echo
+
 # Some final information telling the user about how to suppress this information and how to contact Zeromon for support
 echo 'You can run "rm /root/.zeromon" to suppress this message, but your Zabbix Admin user web password can still be found in /root/zabbix_admin_password'
 echo
