@@ -36,7 +36,7 @@
 
 - name: Generate passwords
   set_fact:
-    zabbix_web_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=12') }}"
+    zabbix_admin_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=12') }}"
     zabbix_mysql_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits') }}"
     root_mysql_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits') }}"
 
@@ -67,14 +67,13 @@
   when: createdb is changed
   register: setzabbixweb
 
-- name: Store Zabbix web administrator password to a file for use later
-  copy:
-    content: "{{ zabbix_web_password }}"
+- name: Template Zabbix web administrator password to a file for user reference later
+  template:
+    src: 'zabbix_admin_password.j2'
     dest: '/root/zabbix_admin_password'
-    mode: 0600
     owner: root
     group: root
-  no_log: True
+    mode: 0600
   when: setzabbixweb is changed
 
 - name: Configure the local mail server that Zabbix should use
@@ -104,7 +103,7 @@
     dest: '/root/.my.cnf'
     owner: root
     group: root
-    mode: 0400
+    mode: 0600
 
 - name: Configure Zabbix server daemon to use MySQL credentials
   replace:
