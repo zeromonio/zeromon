@@ -1,7 +1,7 @@
 # Zeromon
 
 [Zeromon](https://zeromon.io/) provides a pre-built [Zabbix](https://www.zabbix.com/) installation via an Amazon Machine Image ([AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)) on Amazon Web Services ([AWS](https://aws.amazon.com/)).
-The AMI (`ami-028e07527c860f153`) is built via and dependent upon this Git repository.
+The Zeromon AMI is built via and dependent upon this Git repository.
 
 ### Usage
 
@@ -65,7 +65,7 @@ A number of steps were taken within the playbook in this repository to secure th
 
 #### Preparation
 
-In order to create the Zeromon AMI, we have been building it from the official AWS Ubuntu 18.04 LTS AMI (`ami-0ac019f4fcb7cb7e6`) and using [cloud-init](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html#amazon-linux-cloud-init).
+In order to create the Zeromon AMI, we have been building it from the official AWS Ubuntu 18.04 LTS AMI and using [cloud-init](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html#amazon-linux-cloud-init).
 Once an EC2 instance is launched using this official Ubuntu AMI, we only do a few steps to prepare the creation of our own image:
 
 Update everything:
