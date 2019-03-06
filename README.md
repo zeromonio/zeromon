@@ -43,13 +43,13 @@ However, a `t3.large` (or bigger) may be necessary depending upon the number of 
 
 You may want to experiment with other EC2 instance types as well to determine what works best for you and your environment - please feel free to let us know!
 
-The DigitalOcean marketplace image was built with the smallest sized droplet, but you will want to scale up with the number of servers that you intend to monitor from Zabbix.
+The DigitalOcean Marketplace image was built with the smallest sized droplet, but you will want to scale up with the number of servers that you intend to monitor from Zabbix.
 
 ## Support
 
 Any questions or concerns can be sent to support@zeromon.io and we will do our best to help you out!
 
-Unfortunately, the AMI is not currently available within the Amazon GovCloud region at this time.
+Unfortunately, the Amazon Machine Image is not currently available within the Amazon GovCloud region at this time.
 
 The DigitalOcean Marketplace image is _not_ supported by DigitalOcean.
 
