@@ -53,67 +53,6 @@ Unfortunately, the AMI is not currently available within the Amazon GovCloud reg
 
 The DigitalOcean Marketplace image is _not_ supported by DigitalOcean.
 
----
-
 ## Technical Details
 
-The following technical information is simply a reference for any one who may be curious about how the AMI is built.
-
-### Software
-
-Per the automation within this repository, the following software is installed upon the first boot of an EC2 instance launched with our AMI:
-
-- [Ansible](https://www.ansible.com/)
-- [Ubuntu 18.04 LTS](https://www.ubuntu.com/)
-- [Zabbix 4.x](https://www.zabbix.com/)
-- [Apache 2.4](https://httpd.apache.org/)
-- [PHP 7.2](https://secure.php.net/)
-- [MariaDB 10.1](https://mariadb.org/)
-- [Postfix](http://www.postfix.org/)
-
-#### Security
-
-A number of steps were taken within the playbook in this repository to secure the installation of Zabbix and the server as a whole:
-- Default anonymous MySQL user accounts are removed
-- Random passwords are generated for both the `zabbix` and `root` MySQL user accounts
-- A random password is generated for the Zabbix `Admin` web user
-- No "Guest" access is allowed to the Zabbix web user interface
-- Configuration changes are made to the default web server (Apache) installation which:
-    * Avoid "click-jacking"
-    * Disable unnecessary modules
-    * Prevent exposing the operating system and version number
-- The local Zabbix agent (which allows the Zabbix server to monitor itself) is configured to only listen for local network connections
-- The e-mail server (Postfix, which allows Zabbix to send alerts/notifications) is configured to only listen for local network connections
-
-### Preparation
-
-In order to create the Zeromon images, we have been building it from the official AWS Ubuntu 18.04 LTS AMI and official DigitalOcean Ubuntu 18.04 LTS image while using [cloud-init](https://cloudinit.readthedocs.io/en/latest/).
-Once an EC2 instance or DigitalOcean droplet is launched using the official vendor Ubuntu image, we only do a few steps to prepare the creation of our own image:
-
-Update everything:
-
-```
-sudo apt update && sudo apt -y upgrade
-```
-
-Place the [`cloud-config`](cloud-config) script from this repository at `/etc/cloud/cloud.cfg.d/99_zeromon.cfg`:
-
-```
-sudo wget -q https://raw.githubusercontent.com/ericoc/zeromon/master/cloud-config -O /etc/cloud/cloud.cfg.d/99_zeromon.cfg
-```
-
-This `cloud-config` script will do the following upon the first boot of a newly deployed EC2 instance or DigitalOcean droplet:
-- Install Ansible
-- Clone this Git repository
-- Configure Ansible for local execution
-- Execute our Ansible playbook and role ([`setup.yaml`](setup.yaml)) to completely set up a working Zabbix installation
-- Place instructions in the `root` user prompt on how to log in to the Zabbix web user interface
-
-And finally, just before clearing bash history and building our AMI, we remove the existing SSH host keys as well as our authorized SSH keys from the `root` (and `ubuntu` on AWS) user account.
-They will be replaced with your own SSH keys by either vendor upon your first launch of your own instance.
-We also clear various logs and `.bash_history` files.
-
-```
-sudo rm -rf /etc/ssh/ssh_host_* /root/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys /var/log/unattended-upgrades /var/log/cloud-init*log
-sudo truncate --size 0 /var/log/{alternatives,auth,dpkg,kern,mail}.log /home/ubuntu/.bash_history /root/.bash_history
-```
+If you are curious about how the Amazon Machine Image or DigitalOcean Marketplace droplet snapshot are created, check out our [build documentation](BUILD.md)!
