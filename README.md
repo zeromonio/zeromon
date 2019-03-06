@@ -1,7 +1,10 @@
 # Zeromon
 
 [Zeromon](https://zeromon.io/) provides a pre-built [Zabbix](https://www.zabbix.com/) installation via an Amazon Machine Image ([AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)) on Amazon Web Services ([AWS](https://aws.amazon.com/)) and are planning to release on the [DigitalOcean Marketplace](https://www.digitalocean.com/products/marketplace/) soon as well.
-The Zeromon AMI and DigitalOcean snapshot are both built via, and dependent upon, this Git repository.
+The Zeromon AWS AMI and DigitalOcean snapshot are both built via, and dependent upon, this Git repository. Check them out at:
+
+- [Amazon Machine Image](https://aws.amazon.com/marketplace/pp/B07MD6N9ZQ/?_ptnr_doc_github_repo_readme)
+- _DigitalOcean Marketplace Snapshot coming soon..._
 
 ### Usage
 
@@ -78,7 +81,7 @@ A number of steps were taken within the playbook in this repository to secure th
 
 #### Preparation
 
-In order to create the Zeromon images, we have been building it from the official AWS Ubuntu 18.04 LTS AMI and official DigitalOcean Ubuntu 18.04 LTS image while using [cloud-init](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html#amazon-linux-cloud-init).
+In order to create the Zeromon images, we have been building it from the official AWS Ubuntu 18.04 LTS AMI and official DigitalOcean Ubuntu 18.04 LTS image while using [cloud-init](https://cloudinit.readthedocs.io/en/latest/).
 Once an EC2 instance or DigitalOcean droplet is launched using the official vendor Ubuntu image, we only do a few steps to prepare the creation of our own image:
 
 Update everything:
