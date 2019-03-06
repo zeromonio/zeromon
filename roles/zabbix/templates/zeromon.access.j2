@@ -10,15 +10,38 @@ echo
 echo "You can log in at:"
 echo
 
+# Determine the "manufacturer" so that we know how to get the public DNS host name or IP address metadata from the vendor
+vendor=$(dmidecode -s system-manufacturer)
+
+case "$vendor" in
+
+    'Amazon EC2')
+        public_hostname_url='http://169.254.169.254/latest/meta-data/public-hostname'
+        public_ipv4_url='http://169.254.169.254/latest/meta-data/public-ipv4'
+        ;;
+
+    'DigitalOcean')
+#        public_hostname_url='http://169.254.169.254/metadata/v1/hostname' # WIP/TODO: These do not necessarily resolve
+        public_ipv4_url='http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address'
+        ;;
+
+esac
+
+# WIP/TODO: Take out this first check for "$public_hostname_url" being empty
+# ..once we find the right thing to do for DigitalOcean host names that may not resolve in DNS
+if [ ! -z "$public_hostname_url" ]
+then
+    public_hostname=$(curl -sf "$public_hostname_url")
+fi
+
 # Determine if the server has a public DNS/host name and use that if so
-public_hostname=$(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
 if [ ! -z "$public_hostname" ]
 then
   zabbix_url="$public_hostname"
 
 # Otherwise, just use the public IPv4 address
 else
-  public_ipv4=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
+  public_ipv4=$(curl -sf "$public_ipv4_url")
   zabbix_url="$public_ipv4"
 fi
 
