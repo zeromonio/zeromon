@@ -17,7 +17,7 @@ Once logged in via SSH as the `ubuntu` user, you will want to run `sudo -i` to s
 
 On both AWS and Digital Ocean, once logged in as the `root` user via SSH, you should see instructions that include the user name (`Admin`) and randomly generated password which you will use to log in to your Zabbix web interface; similar to the following:
 
-![Zabbix Web Interface Credential Instructions Example](https://zeromon.io/ssh-instructions-example.png "Zabbix Web Interface Credential Instructions Example")
+![Zabbix Web Interface Credential Instructions Example](ssh_instructions_example.png "Zabbix Web Interface Credential Instructions Example")
 
 ### Pricing
 
