@@ -6,7 +6,7 @@ The Zeromon AWS AMI and DigitalOcean snapshot are both built via, and dependent 
 - [Amazon Machine Image](https://aws.amazon.com/marketplace/pp/B07MD6N9ZQ/?_ptnr_doc_github_repo_readme)
 - _DigitalOcean Marketplace Snapshot coming soon..._
 
-### Usage
+## Usage
 
 After deployment of our image, the automation from this repository will run and take approximately 2-3 minutes.
 You can verify that the process is complete by simply visiting the IP address or DNS name of your new instance in a web browser.
@@ -19,23 +19,23 @@ Once logged in as the `root` user via SSH, you should see instructions that incl
 
 ![Zabbix Web Interface Instructions Example](assets/ssh_instructions_example.png "Zabbix Web Interface Instructions Example")
 
-#### AWS/EC2
+### AWS/EC2
 
 When using AWS, you will need to SSH to your EC2 instance as the `ubuntu` user with the SSH key that you used when deploying via AWS.
 Once logged in via SSH as the `ubuntu` user, you will want to run `sudo -i` to switch to the `root` user account.
 
-#### DigitalOcean
+### DigitalOcean
 
 With DigitalOcean, you should be able to SSH to your droplet as the `root` user directly using a password or SSH key, depending upon whether you selected a public key when deploying.
 
-### Pricing
+## Pricing
 
 The cost for usage of the Amazon AMI software is $0.05 USD per hour (or basically, $36.00 USD per month) for all instance types in all regions, in addition to the EC2 pricing itself.
 We also offer a 7-day 100% money-back guarantee.
 
 The DigitalOcean Marketplace option is currently undergoing testing and is free until further notice!
 
-#### Instance Type
+### Instance Type
 
 Note that on AWS, $0.05/hour is billed on top of the AWS instance pricing which is calculated separately and dependent upon Amazon based on the region and instance type.
 We generally recommend starting with a `t3.medium` instance type, but you may be able to use a `t3.small` for a smaller environment.
@@ -45,7 +45,7 @@ You may want to experiment with other EC2 instance types as well to determine wh
 
 The DigitalOcean marketplace image was built with the smallest sized droplet, but you will want to scale up with the number of servers that you intend to monitor from Zabbix.
 
-### Support
+## Support
 
 Any questions or concerns can be sent to support@zeromon.io and we will do our best to help you out!
 
@@ -55,11 +55,11 @@ The DigitalOcean Marketplace image is _not_ supported by DigitalOcean.
 
 ---
 
-### Technical Details
+## Technical Details
 
 The following technical information is simply a reference for any one who may be curious about how the AMI is built.
 
-#### Software
+### Software
 
 Per the automation within this repository, the following software is installed upon the first boot of an EC2 instance launched with our AMI:
 
@@ -71,7 +71,7 @@ Per the automation within this repository, the following software is installed u
 - [MariaDB 10.1](https://mariadb.org/)
 - [Postfix](http://www.postfix.org/)
 
-##### Security
+#### Security
 
 A number of steps were taken within the playbook in this repository to secure the installation of Zabbix and the server as a whole:
 - Default anonymous MySQL user accounts are removed
@@ -85,7 +85,7 @@ A number of steps were taken within the playbook in this repository to secure th
 - The local Zabbix agent (which allows the Zabbix server to monitor itself) is configured to only listen for local network connections
 - The e-mail server (Postfix, which allows Zabbix to send alerts/notifications) is configured to only listen for local network connections
 
-#### Preparation
+### Preparation
 
 In order to create the Zeromon images, we have been building it from the official AWS Ubuntu 18.04 LTS AMI and official DigitalOcean Ubuntu 18.04 LTS image while using [cloud-init](https://cloudinit.readthedocs.io/en/latest/).
 Once an EC2 instance or DigitalOcean droplet is launched using the official vendor Ubuntu image, we only do a few steps to prepare the creation of our own image:
