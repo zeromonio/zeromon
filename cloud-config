@@ -5,7 +5,7 @@ packages:
  - ansible
 
 runcmd:
- - [ sh, -c, "git clone https://github.com/ericoc/zeromon.git /usr/local/src/zeromon" ]
+ - [ sh, -c, "git clone https://github.com/zeromonio/zeromon.git /usr/local/src/zeromon" ]
  - [ sh, -c, "mkdir /tmp/ansible_local" ]
  - [ sh, -c, "mkdir /tmp/ansible_remote" ]
  - [ sh, -c, "cat /usr/local/src/zeromon/ansible.cfg > /etc/ansible/ansible.cfg" ]

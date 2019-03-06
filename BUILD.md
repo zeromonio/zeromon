@@ -16,7 +16,7 @@ sudo apt update && sudo apt -y upgrade
 Place the [`cloud-config`](cloud-config) script from this repository at `/etc/cloud/cloud.cfg.d/99_zeromon.cfg`:
 
 ```
-sudo wget -q https://raw.githubusercontent.com/ericoc/zeromon/master/cloud-config -O /etc/cloud/cloud.cfg.d/99_zeromon.cfg
+sudo wget -q https://raw.githubusercontent.com/zeromonio/zeromon/master/cloud-config -O /etc/cloud/cloud.cfg.d/99_zeromon.cfg
 ```
 
 And finally, we remove the existing SSH host keys as well as our authorized SSH keys from the `root` (and `ubuntu` on AWS) user accounts.
