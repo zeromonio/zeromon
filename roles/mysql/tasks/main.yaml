@@ -37,8 +37,8 @@
 - name: Generate passwords
   set_fact:
     zabbix_admin_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=12') }}"
-    zabbix_mysql_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits') }}"
-    root_mysql_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits') }}"
+    zabbix_mysql_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=20') }}"
+    root_mysql_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=24') }}"
 
 - name: Template MySQL query to update Zabbix web administrator password and disable guests
   template:
