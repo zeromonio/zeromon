@@ -12,15 +12,21 @@ After deployment of our image, the automation from this repository will run and 
 You can verify that the process is complete by simply visiting the IP address or DNS name of your new instance in a web browser.
 You should see the Zabbix log-in screen asking for a user name and password once it is ready.
 
+To log in to your Zabbix web interface, you will need the "Admin" password for the web interface.
+You must log in to your server via SSH to get this password.
+
+Once logged in as the `root` user via SSH, you should see instructions that include the user name (`Admin`) and randomly generated password, which you will use to log in to your Zabbix web interface; similar to the following screenshot:
+
+![Zabbix Web Interface Instructions Example](assets/ssh_instructions_example.png "Zabbix Web Interface Instructions Example")
+
 #### AWS/EC2
-To log in to your Zabbix web interface, you will need to SSH to your EC2 instance as the `ubuntu` user with the SSH key that you used when deploying via AWS.
+
+When using AWS, you will need to SSH to your EC2 instance as the `ubuntu` user with the SSH key that you used when deploying via AWS.
 Once logged in via SSH as the `ubuntu` user, you will want to run `sudo -i` to switch to the `root` user account.
 
 #### DigitalOcean
 
-On both AWS and Digital Ocean, once logged in as the `root` user via SSH, you should see instructions that include the user name (`Admin`) and randomly generated password which you will use to log in to your Zabbix web interface; similar to the following:
-
-![Zabbix Web Interface Credential Instructions Example](assets/ssh_instructions_example.png "Zabbix Web Interface Credential Instructions Example")
+With DigitalOcean, you should be able to SSH to your droplet as the `root` user directly using a password or SSH key, depending upon whether you selected a public key when deploying.
 
 ### Pricing
 
