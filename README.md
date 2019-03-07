@@ -33,7 +33,7 @@ With DigitalOcean, you should be able to SSH to your droplet as the `root` user 
 The cost for usage of the Amazon AMI software is $0.05 USD per hour (or basically, $36.00 USD per month) for all instance types in all regions, in addition to the EC2 pricing itself.
 We also offer a 7-day 100% money-back guarantee.
 
-The DigitalOcean Marketplace option is currently undergoing testing and is free until further notice!
+The DigitalOcean Marketplace option is currently undergoing testing and is not yet available, so pricing is to be determined.
 
 ### Instance Type
 
