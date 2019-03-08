@@ -40,14 +40,12 @@
 
 - name: Set default outbound ufw policy to allow
   ufw:
-    direction: out
+    state: enabled
     policy: allow
+    direction: out
 
 - name: Set default inbound ufw policy to deny
   ufw:
-    direction: in
-    policy: deny
-
-- name: Enable ufw
-  ufw:
     state: enabled
+    policy: deny
+    direction: in
