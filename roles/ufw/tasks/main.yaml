@@ -6,10 +6,11 @@
     state: latest
     update_cache: yes
 
-- name: Allow all traffic on localhost interface
+- name: Allow all inbound traffic on localhost interface
   ufw:
     rule: allow
     interface: lo
+    direction: in
 
 - name: Allow access to Zabbix
   ufw:
