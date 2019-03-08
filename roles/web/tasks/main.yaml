@@ -1,5 +1,15 @@
 ---
 
+- name: Install certbot package repository
+  apt_repository:
+    repo: ppa:certbot/certbot
+
+- name: Install certbot package
+  apt:
+    name: certbot
+    state: latest
+    update_cache: yes
+
 - name: Remove unnecessary Apache configuration symbolic links
   file:
     path: "/etc/apache2/conf-enabled/{{ item }}.conf"

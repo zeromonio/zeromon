@@ -43,6 +43,7 @@ The following software is installed (via [apt](https://help.ubuntu.com/lts/serve
 - [MariaDB 10.1](https://mariadb.org/)
 - [Postfix](http://www.postfix.org/)
 - [UFW](https://help.ubuntu.com/community/UFW) ("Uncomplicated Firewall")
+- [Certbot](https://certbot.eff.org/)
 
 Additionally, a few other steps are done by the Ansible playbook, such as placing instructions in the `root` user prompt on how to log in to the Zabbix web user interface.
 
@@ -65,3 +66,4 @@ A number of steps were taken within the Ansible roles in this repository to secu
     * `udp/162` (`snmp-trap`)
     * `tcp/22` (`ssh`)
     * `tcp/80` and tcp/443 (`http` and `https`)
+- The Certbot ACME client is pre-installed allowing users to set up HTTPS with an SSL certificate
