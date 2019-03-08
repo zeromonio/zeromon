@@ -4,11 +4,14 @@
   apt_repository:
     repo: ppa:certbot/certbot
 
-- name: Install certbot package
+- name: Install certbot packages
   apt:
-    name: certbot
+    name: "{{ item }}"
     state: latest
     update_cache: yes
+  with_items:
+    - 'certbot'
+    - 'python3-certbot-apache'
 
 - name: Remove unnecessary Apache configuration symbolic links
   file:

@@ -66,4 +66,4 @@ A number of steps were taken within the Ansible roles in this repository to secu
     * `udp/162` (`snmp-trap`)
     * `tcp/22` (`ssh`)
     * `tcp/80` and tcp/443 (`http` and `https`)
-- The Certbot ACME client is pre-installed allowing users to set up HTTPS with an SSL certificate
+- The Certbot ACME client is pre-installed allowing users to set up HTTPS with a valid SSL certificate

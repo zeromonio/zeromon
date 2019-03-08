@@ -28,6 +28,17 @@ Once logged in via SSH as the `ubuntu` user, you will want to run `sudo -i` to s
 
 With DigitalOcean, you should be able to SSH to your droplet as the `root` user directly using a password or SSH key, depending upon whether you selected a public key when deploying.
 
+## HTTPS/SSL _(optional)_
+
+If you would like to enable HTTPS with a valid SSL certificate for your Zabbix web interface, you are free to do so!
+The Zeromon images come pre-installed with `certbot` to generate a free SSL certificate using [Let's Encrypt](https://letsencrypt.org/).
+You can point the (sub-)domain name which you intend to use for Zabbix to the IP address of your server.
+You can then run the following command with your own domain name and follow the prompts:
+
+```
+certbot -d example.com
+```
+
 ## Pricing
 
 The cost for usage of the Amazon AMI software is $0.05 USD per hour (or basically, $36.00 USD per month) for all instance types in all regions, in addition to the EC2 pricing itself.
