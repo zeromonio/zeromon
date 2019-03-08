@@ -38,14 +38,7 @@
     proto: tcp
   with_items: [ 80, 443 ]
 
-- name: Set default outbound ufw policy to allow
+- name: Set default ufw policy to reject
   ufw:
     state: enabled
-    policy: allow
-    direction: out
-
-- name: Set default inbound ufw policy to deny
-  ufw:
-    state: enabled
-    policy: deny
-    direction: in
+    policy: reject
