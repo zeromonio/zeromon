@@ -12,12 +12,11 @@
     interface: lo
     direction: in
 
-- name: Allow access to Zabbix
+- name: Allow access to Zabbix server
   ufw:
     rule: allow
-    port: "{{ item }}"
+    port: 10051
     proto: tcp
-  with_items: [ 10050, 10051 ]
 
 - name: Open SNMP trap port
   ufw:
