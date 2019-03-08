@@ -35,13 +35,14 @@ The `cloud-config` script runs the following steps upon the first boot of a newl
 - Clones this GitHub repository
 - Runs the [`setup.yaml`](setup.yaml) Ansible playbook from the cloned copy of the repository
 
-The following software is installed and configured by the Ansible playbook/roles:
+The following software is installed (via [apt](https://help.ubuntu.com/lts/serverguide/apt.html.en)) and configured by the Ansible playbook/roles upon first boot:
 
 - [Zabbix 4.x](https://www.zabbix.com/)
 - [Apache 2.4](https://httpd.apache.org/)
 - [PHP 7.2](https://secure.php.net/)
 - [MariaDB 10.1](https://mariadb.org/)
 - [Postfix](http://www.postfix.org/)
+- [UFW](https://help.ubuntu.com/community/UFW) ("Uncomplicated Firewall")
 
 Additionally, a few other steps are done by the Ansible playbook, such as placing instructions in the `root` user prompt on how to log in to the Zabbix web user interface.
 
