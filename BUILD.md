@@ -30,7 +30,14 @@ sudo truncate --size 0 /var/log/{alternatives,auth,dpkg,kern,mail}.log /home/ubu
 
 ## First Boot
 
-The `cloud-config` script runs the following steps upon the first boot of a newly launched instance:
+The `cloud-config` script runs upon the first boot of a newly launched instance.
+You can even check the progress of `cloud-init` if you log in quickly upon the first boot of a newly deployed instance and follow along with its log file:
+
+```
+tail -F /var/log/cloud-init-output-zeromon.log
+```
+
+The `cloud-config` script completes the following steps:
 - Installs and configures [Ansible](https://www.ansible.com/)
 - Clones this GitHub repository
 - Runs the [`setup.yaml`](setup.yaml) Ansible playbook from the cloned copy of the repository
@@ -66,4 +73,4 @@ A number of steps were taken within the Ansible roles in this repository to secu
     * `udp/162` (`snmp-trap`)
     * `tcp/22` (`ssh`)
     * `tcp/80` and tcp/443 (`http` and `https`)
-- The Certbot ACME client is pre-installed allowing users to set up HTTPS with a valid SSL certificate
+- The Certbot ACME client is pre-installed allowing users to set up HTTPS with a valid SSL certificate which should be automatically renewed
