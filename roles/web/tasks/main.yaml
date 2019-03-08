@@ -6,10 +6,11 @@
 
 - name: Install certbot packages
   apt:
-    name: "{{ item }}"
+    name: "{{ certbot_packages }}"
     state: latest
     update_cache: yes
-  with_items:
+  vars:
+    certbot_packages:
     - 'certbot'
     - 'python3-certbot-apache'
 
