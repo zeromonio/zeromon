@@ -39,7 +39,7 @@
   with_items: [ 80, 443 ]
 
 - name: Set default outbound ufw policy to allow
-  ufw: 
+  ufw:
     direction: out
     policy: allow
 
@@ -48,6 +48,6 @@
     direction: in
     policy: deny
 
-- name: Reload ufw
+- name: Enable ufw
   ufw:
-    state: reloaded
+    state: enabled
