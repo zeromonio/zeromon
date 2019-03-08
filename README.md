@@ -39,7 +39,7 @@ You can then run the following command via SSH with your own domain name and fol
 certbot -d example.com
 ```
 
-Certbot places a cron job at `/etc/cron.d/certbot` which will automatically renew your SSL certificate regularly to prevent expiry.
+Certbot will automatically renew your SSL certificate regularly to prevent expiry.
 
 ## Pricing
 
