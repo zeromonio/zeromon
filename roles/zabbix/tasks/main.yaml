@@ -64,6 +64,10 @@
   args:
     creates: /etc/systemd/system/multi-user.target.wants/zabbix-agent.service
 
+- name: Run ufw/firewall role
+  include_role:
+    name: ufw
+
 - name: Template Zabbix web access instructions for root user
   template:
     src: 'zeromon.access.j2'
