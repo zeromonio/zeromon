@@ -59,3 +59,9 @@ A number of steps were taken within the Ansible roles in this repository to secu
     * Prevent exposing the operating system and version number
 - The local Zabbix agent (which allows the Zabbix server to monitor itself) is configured to only listen for local network connections
 - The e-mail server (Postfix, which allows Zabbix to send alerts/notifications) is configured to only listen for local network connections
+- The firewall software (UFW) also rejects all inbound network connections except for those to the following destinations on the server:
+    * any on the `lo` interface (`localhost` / `127.0.0.1`)
+    * `tcp/10051` (`zabbix-server`)
+    * `udp/162 (`snmp-trap`)
+    * `tcp/22` (`ssh`)
+    * `tcp/80` and tcp/443 (`http` and `https`)
