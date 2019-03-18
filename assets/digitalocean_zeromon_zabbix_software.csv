@@ -1,0 +1,7 @@
+appName,name,version,releaseNotes,website,licenseType,licenseLink
+Zabbix,Zabbix,4 (Zabbix repository),https://www.zabbix.com/rn/rn4.0.5,https://www.zabbix.com/,GPL 2,https://www.zabbix.com/license
+Apache,Apache HTTP Server,2.4,https://httpd.apache.org/docs/2.4/new_features_2_4.html,https://httpd.apache.org/,Apache 2,https://www.apache.org/licenses/LICENSE-2.0
+MariaDB,MariaDB,10.1,https://mariadb.com/kb/en/library/release-notes/,https://mariadb.org/,GPL 2,https://mariadb.com/kb/en/library/mariadb-license/
+PHP,PHP,7.2,http://php.net/releases/7_2_0.php,http://php.net/,PHP 3,http://php.net/license/index.php
+Certbot,Certbot,0.31 (PPA),https://github.com/certbot/certbot/blob/master/CHANGELOG.md,https://certbot.eff.org/,Apache 2,https://github.com/certbot/certbot/blob/master/LICENSE.txt
+Postfix,Postfix mail daemon,3.3,http://www.postfix.org/announcements.html,http://www.postfix.org/,IBM 1,http://www.postfix.org/IBM-Public-License-1.0.txt
