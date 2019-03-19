@@ -1,4 +1,4 @@
--- {{ ansible_managed }}
+{{ ansible_managed | comment(decoration="-- ") }}
 UPDATE `zabbix`.`media_type` SET `smtp_server` = 'localhost' WHERE `mediatypeid` = 1;
 UPDATE `zabbix`.`media_type` SET `smtp_helo` = '{{ ansible_fqdn }}' WHERE `mediatypeid` = 1;
 UPDATE `zabbix`.`media_type` SET `smtp_email` = 'zabbix@{{ ansible_fqdn }}' WHERE `mediatypeid` = 1;

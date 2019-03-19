@@ -1,6 +1,6 @@
 # ~/.profile: executed by Bourne-compatible login shells.
 
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 if [ "$BASH" ]; then
   if [ -f ~/.bashrc ]; then
