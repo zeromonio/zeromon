@@ -1,10 +1,10 @@
 # Zeromon
 
-[Zeromon](https://zeromon.io/) provides a pre-built [Zabbix](https://www.zabbix.com/) installation via an Amazon Machine Image ([AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)) on Amazon Web Services ([AWS](https://aws.amazon.com/)) and are planning to release on the [DigitalOcean Marketplace](https://www.digitalocean.com/products/marketplace/) soon as well.
-The Zeromon AWS AMI and DigitalOcean snapshot are both built via, and dependent upon, this Git repository. Check them out at:
+[Zeromon](https://zeromon.io/) provides a pre-built [Zabbix](https://www.zabbix.com/) installation via an Amazon Machine Image ([AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)) on Amazon Web Services ([AWS](https://aws.amazon.com/)) and we are planning to release a One-Click on the [DigitalOcean Marketplace](https://www.digitalocean.com/products/marketplace/) soon as well.
+The Zeromon AWS AMI and DigitalOcean One-Click are both built via, and dependent upon, this Git repository. Check them out at:
 
 - [Amazon Machine Image](https://aws.amazon.com/marketplace/pp/B07MD6N9ZQ/?_ptnr_doc_github_repo_readme)
-- _DigitalOcean Marketplace Snapshot coming soon..._
+- _DigitalOcean Marketplace One-Click coming soon..._
 
 ## Usage
 
@@ -26,7 +26,7 @@ Once logged in via SSH as the `ubuntu` user, you will want to run `sudo -i` to s
 
 ### DigitalOcean
 
-With DigitalOcean, you should be able to SSH to your droplet as the `root` user directly using a password or SSH key, depending upon whether you selected a public key when deploying.
+With DigitalOcean, you should be able to SSH to your Droplet as the `root` user directly using a password or SSH key, depending upon whether you selected a public key when deploying.
 
 ## HTTPS/SSL _(optional)_
 
@@ -46,7 +46,7 @@ Certbot will automatically renew your SSL certificate regularly to prevent expir
 The cost for usage of the Amazon AMI software is $0.05 USD per hour (or basically, $36.00 USD per month) for all instance types in all regions, in addition to the EC2 pricing itself.
 We also offer a 7-day 100% money-back guarantee.
 
-The DigitalOcean Marketplace option is currently undergoing testing and is not yet available, so pricing is to be determined.
+The DigitalOcean Marketplace "One-Click" installation is currently undergoing testing and is not yet available, but will be free to deploy for the foreseeable future.
 
 ### Instance Type
 
@@ -56,7 +56,7 @@ However, a `t3.large` (or bigger) may be necessary depending upon the number of 
 
 You may want to experiment with other EC2 instance types as well to determine what works best for you and your environment - please feel free to let us know!
 
-The DigitalOcean Marketplace image was built with the smallest sized droplet, but you will want to scale up with the number of servers that you intend to monitor from Zabbix.
+The DigitalOcean Marketplace One-Click was built with the smallest sized ($5.00/month) Droplet, but you will want to scale up with the number of servers that you intend to monitor from Zabbix.
 
 ## Support
 
@@ -64,8 +64,8 @@ Any questions or concerns can be sent to support@zeromon.io and we will do our b
 
 Unfortunately, the Amazon Machine Image is not currently available within the Amazon GovCloud region at this time.
 
-The DigitalOcean Marketplace image is _not_ supported by DigitalOcean.
+The DigitalOcean Marketplace One-Click is _not_ supported by DigitalOcean directly.
 
 ## Technical Details
 
-If you are curious about how the Amazon Machine Image or DigitalOcean Marketplace droplet snapshot are created, check out our [build documentation](BUILD.md)!
+If you are curious about how the Amazon Machine Image or DigitalOcean Marketplace One-Click are created, check out our [build documentation](BUILD.md)!
