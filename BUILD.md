@@ -72,5 +72,5 @@ A number of steps were taken within the Ansible roles in this repository to secu
     * `tcp/10051` (`zabbix-server`)
     * `udp/162` (`snmp-trap`)
     * `tcp/22` (`ssh`)
-    * `tcp/80` and tcp/443 (`http` and `https`)
+    * `tcp/80` and `tcp/443` (`http` and `https`)
 - The Certbot ACME client is pre-installed allowing users to set up HTTPS with a valid SSL certificate which should be automatically renewed
