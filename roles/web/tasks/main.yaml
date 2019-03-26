@@ -18,7 +18,7 @@
   file:
     path: "/etc/apache2/conf-enabled/{{ item }}.conf"
     state: absent
-  with_items:
+  loop:
     - 'other-vhosts-access-log'
     - 'serve-cgi-bin'
     - 'zabbix'

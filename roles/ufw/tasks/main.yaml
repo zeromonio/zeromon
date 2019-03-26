@@ -35,7 +35,9 @@
     rule: allow
     port: "{{ item }}"
     proto: tcp
-  with_items: [ 80, 443 ]
+  loop:
+    - 80
+    - 443
 
 - name: Set default ufw policy to reject
   ufw:
