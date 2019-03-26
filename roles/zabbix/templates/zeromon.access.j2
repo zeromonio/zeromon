@@ -4,10 +4,9 @@
 
 # Welcome the user before giving authentication information for the Zabbix web UI
 echo
-echo "Welcome to your Zeromon Zabbix installation!"
+echo 'Welcome to your Zeromon Zabbix installation!'
 echo
-
-echo "You can log in at:"
+echo 'You can log in at:'
 echo
 
 # Determine the "manufacturer" so that we know how to get the public DNS host name or IP address metadata from the vendor
@@ -49,13 +48,13 @@ fi
 echo "http://${zabbix_url}/"
 echo
 
+echo 'User name: Admin'
 zabbix_admin_password=$(cat /root/zabbix_admin_password)
-echo "User name: Admin"
 echo "Password: ${zabbix_admin_password}"
 echo
 
 # Tell the user how to set up e-mail notifications
-echo "Once logged in, you can visit the 'Media' tab at http://${zabbix_url}/profile.php#mediaTab to specify an e-mail address to receive notifications."
+echo "Once logged in, you can visit the 'Media' tab at http://${zabbix_url}/profile.php#mediaTab to specify an e-mail address to receive notifications"
 echo
 
 # Some final information telling the user about how to suppress this information and how to contact Zeromon for support
