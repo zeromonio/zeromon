@@ -11,13 +11,13 @@
     update_cache: yes
   vars:
     zabbix_packages:
-    - 'zabbix-agent'
-    - 'zabbix-server-mysql'
-    - 'zabbix-frontend-php'
+    - zabbix-agent
+    - zabbix-server-mysql
+    - zabbix-frontend-php
 
 - name: Configure Zabbix agent to only expect local connections
   replace:
-    path: '/etc/zabbix/zabbix_agentd.conf'
+    path: /etc/zabbix/zabbix_agentd.conf
     regexp: '^# ListenIP=0.0.0.0'
     replace: 'ListenIP=127.0.0.1'
   notify:
@@ -25,7 +25,7 @@
 
 - name: Secure ownership and permissions of Zabbix server configuration file
   file:
-    path: '/etc/zabbix/zabbix_server.conf'
+    path: /etc/zabbix/zabbix_server.conf
     owner: root
     group: zabbix
     mode: 0640
@@ -36,7 +36,7 @@
 
 - name: Check for my.cnf configuration file
   stat:
-    path: '/root/.my.cnf'
+    path: /root/.my.cnf
   register: mycnf
 
 - name: Run MySQL role if it has not already been done
@@ -46,7 +46,7 @@
 
 - name: Check for Zabbix web virtual host configuration file
   stat:
-    path: '/etc/apache2/sites-available/zabbix.conf'
+    path: /etc/apache2/sites-available/zabbix.conf
   register: vhost
 
 - name: Run web role if it has not already been done
@@ -70,16 +70,16 @@
 
 - name: Template Zabbix web access instructions for root user
   template:
-    src: 'zeromon.access.j2'
-    dest: '/root/.zeromon'
+    src: zeromon.access.j2
+    dest: /root/.zeromon
     owner: root
     group: root
     mode: 0600
 
 - name: Template root user shell profile to include Zabbix access instructions
   template:
-    src: 'root.profile.j2'
-    dest: '/root/.profile'
+    src: root.profile.j2
+    dest: /root/.profile
     owner: root
     group: root
     mode: 0644

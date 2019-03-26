@@ -30,7 +30,7 @@
     name: zabbix
     collation: utf8_bin
     encoding: utf8
-    target: '/usr/share/doc/zabbix-server-mysql/create.sql.gz'
+    target: /usr/share/doc/zabbix-server-mysql/create.sql.gz
     state: import
   when: createdb is changed
 
@@ -42,8 +42,8 @@
 
 - name: Template MySQL query to update Zabbix web administrator password and disable guests
   template:
-    src: 'zabbix_admin.sql.j2'
-    dest: '/usr/share/doc/zabbix-server-mysql/zabbix_admin.sql'
+    src: zabbix_admin.sql.j2
+    dest: /usr/share/doc/zabbix-server-mysql/zabbix_admin.sql
     owner: root
     group: root
     mode: 0400
@@ -51,8 +51,8 @@
 
 - name: Template MySQL query to update Zabbix mail server
   template:
-    src: 'zabbix_media.sql.j2'
-    dest: '/usr/share/doc/zabbix-server-mysql/zabbix_media.sql'
+    src: zabbix_media.sql.j2
+    dest: /usr/share/doc/zabbix-server-mysql/zabbix_media.sql
     owner: root
     group: root
     mode: 0400
@@ -62,15 +62,15 @@
 - name: Set Zabbix web administrator password and disable guests using generated MySQL script
   mysql_db:
     name: zabbix
-    target: '/usr/share/doc/zabbix-server-mysql/zabbix_admin.sql'
+    target: /usr/share/doc/zabbix-server-mysql/zabbix_admin.sql
     state: import
   when: createdb is changed
   register: setzabbixweb
 
 - name: Template Zabbix web administrator password to a file for user reference later
   template:
-    src: 'zabbix_admin_password.j2'
-    dest: '/root/zabbix_admin_password'
+    src: zabbix_admin_password.j2
+    dest: /root/zabbix_admin_password
     owner: root
     group: root
     mode: 0600
@@ -79,7 +79,7 @@
 - name: Configure the local mail server that Zabbix should use
   mysql_db:
     name: zabbix
-    target: '/usr/share/doc/zabbix-server-mysql/zabbix_media.sql'
+    target: /usr/share/doc/zabbix-server-mysql/zabbix_media.sql
     state: import
   when: storemail is changed
 
@@ -99,15 +99,15 @@
 
 - name: Template my.cnf configuration file
   template:
-    src: 'my.cnf.j2'
-    dest: '/root/.my.cnf'
+    src: my.cnf.j2
+    dest: /root/.my.cnf
     owner: root
     group: root
     mode: 0600
 
 - name: Configure Zabbix server daemon to use MySQL credentials
   replace:
-    path: '/etc/zabbix/zabbix_server.conf'
+    path: /etc/zabbix/zabbix_server.conf
     regexp: '^# DBPassword='
     replace: "DBPassword={{ zabbix_mysql_password }}"
   no_log: True
@@ -116,8 +116,8 @@
 
 - name: Configure Zabbix web interface to use MySQL credentials
   template:
-    src: 'web_zabbix.conf.php.j2'
-    dest: '/etc/zabbix/web/zabbix.conf.php'
+    src: web_zabbix.conf.php.j2
+    dest: /etc/zabbix/web/zabbix.conf.php
     owner: root
     group: www-data
     mode: 0640
