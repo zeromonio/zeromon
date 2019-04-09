@@ -1,10 +1,10 @@
 # Zeromon
 
-[Zeromon](https://zeromon.io/) provides a pre-built [Zabbix](https://www.zabbix.com/) installation via an Amazon Machine Image ([AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)) on Amazon Web Services ([AWS](https://aws.amazon.com/)) and we are planning to release a One-Click on the [DigitalOcean Marketplace](https://www.digitalocean.com/products/marketplace/) soon as well.
+[Zeromon](https://zeromon.io/) provides a pre-built [Zabbix](https://www.zabbix.com/) installation via an Amazon Machine Image ([AMI](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)) on Amazon Web Services ([AWS](https://aws.amazon.com/)) and a One-Click Droplet installation on the [DigitalOcean Marketplace](https://www.digitalocean.com/products/marketplace/).
 The Zeromon AWS AMI and DigitalOcean One-Click are both built via, and dependent upon, this Git repository. Check them out at:
 
 - [Amazon Machine Image](https://aws.amazon.com/marketplace/pp/B07MD6N9ZQ/?_ptnr_doc_github_repo_readme)
-- _DigitalOcean Marketplace One-Click coming soon..._
+- [DigitalOcean Marketplace One-Click](https://marketplace.digitalocean.com/apps/zabbix)
 
 ## Usage
 
@@ -46,7 +46,7 @@ Certbot will automatically renew your SSL certificate regularly to prevent expir
 The cost for usage of the Amazon AMI software is $0.05 USD per hour (or basically, $36.00 USD per month) for all instance types in all regions, in addition to the EC2 pricing itself.
 We also offer a 7-day 100% money-back guarantee.
 
-The DigitalOcean Marketplace "One-Click" installation is currently undergoing testing and is not yet available, but will be free to deploy for the foreseeable future.
+The DigitalOcean Marketplace "One-Click" installation is currently undergoing testing and is free to deploy for the near future.
 
 ### Instance Type
 
