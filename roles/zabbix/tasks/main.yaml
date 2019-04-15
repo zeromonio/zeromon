@@ -15,6 +15,14 @@
     - zabbix-server-mysql
     - zabbix-frontend-php
 
+- name: Replace default Apache index during installation process
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Configure Zabbix agent to only expect local connections
   replace:
     path: /etc/zabbix/zabbix_agentd.conf
