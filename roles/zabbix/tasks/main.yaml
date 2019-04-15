@@ -73,6 +73,14 @@
     name: web
   when: not vhost.stat.exists
 
+- name: Template alertscript for optional Slack notifications
+  template:
+    src: slack.sh.j2
+    dest: /usr/lib/zabbix/alertscripts/slack.sh
+    owner: root
+    group: zabbix
+    mode: 0750
+
 - name: Ensure that Zabbix server starts at boot
   command: systemctl enable zabbix-server
   args:

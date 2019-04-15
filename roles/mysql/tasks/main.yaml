@@ -59,6 +59,16 @@
   when: createdb is changed
   register: storemail
 
+- name: Template MySQL query to implement Slack media
+  template:
+    src: zabbix_slack.sql.j2
+    dest: /usr/share/doc/zabbix-server-mysql/zabbix_slack.sql
+    owner: root
+    group: root
+    mode: 0400
+  when: createdb is changed
+  register: slackdb
+
 - name: Set Zabbix web administrator password and disable guests using generated MySQL script
   mysql_db:
     name: zabbix
@@ -82,6 +92,13 @@
     target: /usr/share/doc/zabbix-server-mysql/zabbix_media.sql
     state: import
   when: storemail is changed
+
+- name: Implement Slack media within Zabbix database
+  mysql_db:
+    name: zabbix
+    target: /usr/share/doc/zabbix-server-mysql/zabbix_slack.sql
+    state: import
+  when: slackdb is changed
 
 - name: Create MySQL user account for Zabbix
   mysql_user:
