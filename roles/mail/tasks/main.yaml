@@ -9,6 +9,9 @@
     mail_packages:
     - postfix
     - mailutils
+  tags:
+    - apt
+    - packages
 
 - name: Configure mail daemon to only listen locally
   replace:
