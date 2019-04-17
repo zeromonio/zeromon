@@ -11,7 +11,7 @@
     - repository
     - repositories
 
-- name: Install Zabbix package from their official repository
+- name: Install Zabbix packages from their official repository
   apt:
     name: "{{ zabbix_packages }}"
     state: latest
