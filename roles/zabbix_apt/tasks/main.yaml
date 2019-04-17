@@ -21,6 +21,6 @@
     - zabbix-agent
     - zabbix-server-mysql
     - zabbix-frontend-php
-   tags:
-     - apt
-     - packages
+  tags:
+    - apt
+    - packages
