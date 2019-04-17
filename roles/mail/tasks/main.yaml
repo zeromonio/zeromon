@@ -2,9 +2,13 @@
 
 - name: Install mail packages
   apt:
-    name: mailutils
+    name: "{{ mail_packages }}"
     state: latest
     update_cache: yes
+  vars:
+    mail_packages:
+    - postfix
+    - mailutils
 
 - name: Configure mail daemon to only listen locally
   replace:

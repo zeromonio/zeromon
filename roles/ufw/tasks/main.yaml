@@ -12,7 +12,7 @@
     interface: lo
     direction: in
 
-- name: Allow access to Zabbix server
+- name: Allow Zabbix agent access to Zabbix server
   ufw:
     rule: allow
     port: 10051

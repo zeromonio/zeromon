@@ -1,10 +1,14 @@
 ---
 
-- name: Install MySQL Python module package
+- name: Install needed MySQL packages
   apt:
     name: python-mysqldb
     state: latest
     update_cache: yes
+  vars:
+    mysql_packages:
+    - python-mysqldb
+    - zabbix-server-mysql
 
 - name: Remove all anonymous MySQL user accounts
   mysql_user:
@@ -39,6 +43,7 @@
     zabbix_admin_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=12') }}"
     zabbix_mysql_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=20') }}"
     root_mysql_password: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=24') }}"
+  when: createdb is changed
 
 - name: Template MySQL query to update Zabbix web administrator password and disable guests
   template:
@@ -106,6 +111,7 @@
     password: "{{ zabbix_mysql_password }}"
     priv: 'zabbix.*:ALL'
     state: present
+  when: zabbix_mysql_password is defined
 
 - name: Set MySQL root password
   mysql_user:
@@ -113,6 +119,7 @@
     name: root
     host_all: yes
     password: "{{ root_mysql_password }}"
+  when: root_mysql_password is defined
 
 - name: Template my.cnf configuration file
   template:
@@ -121,6 +128,7 @@
     owner: root
     group: root
     mode: 0600
+  when: root_mysql_password is defined
 
 - name: Configure Zabbix server daemon to use MySQL credentials
   replace:
@@ -128,6 +136,7 @@
     regexp: '^# DBPassword='
     replace: "DBPassword={{ zabbix_mysql_password }}"
   no_log: True
+  when: zabbix_mysql_password is defined
   notify:
     - restart zabbix-server
 
@@ -138,3 +147,4 @@
     owner: root
     group: www-data
     mode: 0640
+  when: zabbix_mysql_password is defined
