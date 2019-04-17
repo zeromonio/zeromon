@@ -1,14 +1,13 @@
 ---
 
-- name: Install needed MySQL packages
+- name: Install needed MySQL Python module package
   apt:
     name: python-mysqldb
     state: latest
     update_cache: yes
-  vars:
-    mysql_packages:
-    - python-mysqldb
-    - zabbix-server-mysql
+  tags:
+    - apt
+    - packages
 
 - name: Remove all anonymous MySQL user accounts
   mysql_user:

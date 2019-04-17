@@ -1,0 +1,26 @@
+---
+
+- name: Install official Zabbix Ubuntu/APT package repository
+  apt:
+    deb: 'https://repo.zabbix.com/zabbix/4.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.0-2+bionic_all.deb'
+  tags:
+    - apt
+    - packages
+    - repo
+    - repos
+    - repository
+    - repositories
+
+- name: Install Zabbix package from their official repository
+  apt:
+    name: "{{ zabbix_packages }}"
+    state: latest
+    update_cache: yes
+  vars:
+    zabbix_packages:
+    - zabbix-agent
+    - zabbix-server-mysql
+    - zabbix-frontend-php
+   tags:
+     - apt
+     - packages
