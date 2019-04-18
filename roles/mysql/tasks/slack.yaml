@@ -1,0 +1,17 @@
+---
+
+- name: Template MySQL query to implement Slack media
+  template:
+    src: zabbix_slack.sql.j2
+    dest: /usr/share/doc/zabbix-server-mysql/zabbix_slack.sql
+    owner: root
+    group: root
+    mode: 0400
+  register: slackdb
+
+- name: Implement Slack media within Zabbix database
+  mysql_db:
+    name: zabbix
+    target: /usr/share/doc/zabbix-server-mysql/zabbix_slack.sql
+    state: import
+  when: slackdb is changed

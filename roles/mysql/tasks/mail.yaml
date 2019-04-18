@@ -1,0 +1,17 @@
+---
+
+- name: Template MySQL query to update Zabbix mail server
+  template:
+    src: zabbix_mail.sql.j2
+    dest: /usr/share/doc/zabbix-server-mysql/zabbix_mail.sql
+    owner: root
+    group: root
+    mode: 0400
+  register: maildb
+
+- name: Configure the local mail server that Zabbix should use
+  mysql_db:
+    name: zabbix
+    target: /usr/share/doc/zabbix-server-mysql/zabbix_mail.sql
+    state: import
+  when: maildb is changed
