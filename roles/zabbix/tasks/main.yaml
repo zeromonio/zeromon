@@ -23,15 +23,22 @@
     group: zabbix
     mode: 0750
 
-- name: Ensure that Zabbix server starts at boot
-  command: systemctl enable zabbix-server
+- name: Ensure that Zabbix agent and server start at boot
+  command: "systemctl enable {{ item }}"
   args:
-    creates: /etc/systemd/system/multi-user.target.wants/zabbix-server.service
+    creates: "/etc/systemd/system/multi-user.target.wants/{{ item }}.service"
+  loop:
+    - zabbix-agent
+    - zabbix-server
 
-- name: Ensure that Zabbix agent starts at boot
-  command: systemctl enable zabbix-agent
-  args:
-    creates: /etc/systemd/system/multi-user.target.wants/zabbix-agent.service
+- name: Ensure that Zabbix agent and server start at boot, the Ansible way
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+    masked: no
+  loop:
+    - zabbix-agent
+    - zabbix-server
 
 - name: Template Zabbix web access instructions for root user
   template:
