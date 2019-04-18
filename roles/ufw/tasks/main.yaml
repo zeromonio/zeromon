@@ -4,10 +4,6 @@
   apt:
     name: ufw
     state: latest
-    update_cache: yes
-  tags:
-    - apt
-    - packages
 
 - name: Allow all inbound traffic on localhost interface
   ufw:

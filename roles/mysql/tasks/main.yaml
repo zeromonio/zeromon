@@ -5,9 +5,6 @@
     name: python-mysqldb
     state: latest
     update_cache: yes
-  tags:
-    - apt
-    - packages
 
 - name: Remove all anonymous MySQL user accounts
   mysql_user:

@@ -9,9 +9,6 @@
     web_packages:
     - apache2
     - libapache2-mod-php7.2
-  tags:
-    - apt
-    - packages
 
 - name: Replace default Apache index for installation process
   template:
@@ -24,12 +21,6 @@
 - name: Install certbot package repository
   apt_repository:
     repo: ppa:certbot/certbot
-  tags:
-    - apt
-    - repo
-    - repos
-    - repository
-    - repositories
 
 - name: Install certbot packages
   apt:
@@ -40,9 +31,6 @@
     certbot_packages:
     - certbot
     - python3-certbot-apache
-  tags:
-    - apt
-    - packages
 
 - name: Remove unnecessary Apache configuration symbolic links
   file:
