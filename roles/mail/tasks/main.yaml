@@ -4,7 +4,6 @@
   apt:
     name: "{{ mail_packages }}"
     state: latest
-    update_cache: yes
   vars:
     mail_packages:
     - postfix

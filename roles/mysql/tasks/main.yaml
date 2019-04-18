@@ -4,7 +4,6 @@
   apt:
     name: python-mysqldb
     state: latest
-    update_cache: yes
 
 - name: Remove all anonymous MySQL user accounts
   mysql_user:

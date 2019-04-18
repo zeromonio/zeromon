@@ -4,7 +4,6 @@
   apt:
     name: "{{ web_packages }}"
     state: latest
-    update_cache: yes
   vars:
     web_packages:
     - apache2
@@ -18,15 +17,14 @@
     group: root
     mode: 0644
 
-- name: Install certbot package repository
+- name: Install official Certbot package repository (PPA)
   apt_repository:
     repo: ppa:certbot/certbot
 
-- name: Install certbot packages
+- name: Install Certbot from their package repository (PPA)
   apt:
     name: "{{ certbot_packages }}"
     state: latest
-    update_cache: yes
   vars:
     certbot_packages:
     - certbot
@@ -56,7 +54,7 @@
   notify:
     - reload apache2
 
-- name: Template Apache Zabbix virtual host configuration file, without enabling
+- name: Template Apache Zabbix virtual host configuration file (without enabling)
   template:
     src: zabbix.conf.j2
     dest: /etc/apache2/sites-available/zabbix.conf
