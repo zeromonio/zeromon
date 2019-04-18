@@ -6,6 +6,6 @@
     - web
     - mail
     - ufw
-    - zabbix_apt
+    - apt_zabbix
     - mysql
     - zabbix
