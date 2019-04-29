@@ -4,7 +4,7 @@
 The Zeromon AWS AMI and DigitalOcean One-Click are both built via, and dependent upon, this Git repository. Check them out at:
 
 - [Amazon Machine Image](https://aws.amazon.com/marketplace/pp/B07MD6N9ZQ/?_ptnr_doc_github_repo_readme)
-- [DigitalOcean Marketplace One-Click](https://marketplace.digitalocean.com/apps/zabbix)
+- [DigitalOcean Marketplace One-Click](https://marketplace.digitalocean.com/apps/zeromon-zabbix)
 
 ## Usage
 
