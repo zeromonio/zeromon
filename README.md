@@ -41,6 +41,13 @@ certbot -d example.com
 
 Certbot will automatically renew your SSL certificate regularly to prevent expiry.
 
+## Slack Alerts _(optional)_
+
+Zeromon includes the ability to send Slack alerts/notifications!
+This is supported with the free version of Slack.
+All that is required is a [Slack.com incoming webhook integration](https://slack.com/apps/A0F7XDUAZ-incoming-webhooks).
+You can [find more information about setting up Slack alerts within Zeromon here](SLACK.md).
+
 ## Pricing
 
 The cost for usage of the Amazon AMI software is $0.05 USD per hour (or basically, $36.00 USD per month) for all instance types in all regions, in addition to the EC2 pricing itself.
