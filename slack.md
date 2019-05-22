@@ -31,4 +31,6 @@ You will need to check the "Enabled" box and click "Update" within the pop-up.
 
 Finally, you also need to click "Update" on the profile page itself to save your changes.
 
-* originally from [https://imgur.com/a/ypXtX9B](https://imgur.com/a/ypXtX9B) *
+---
+
+originally from [https://imgur.com/a/ypXtX9B](https://imgur.com/a/ypXtX9B)
