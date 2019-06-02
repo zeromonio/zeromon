@@ -15,6 +15,12 @@
     group: zabbix
     mode: 0640
 
+- name: Ensure correct permissions of Zabbix web assets cache directory
+  file:
+    path: /usr/share/zabbix/assets
+    owner: www-data
+    group: www-data
+
 - name: Template alertscript for optional Slack notifications
   template:
     src: slack.sh.j2
