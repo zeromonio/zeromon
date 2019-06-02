@@ -21,6 +21,14 @@
     owner: www-data
     group: www-data
 
+- name: Ensure graph font is linked within appropriate Zabbix web assets directory
+  file:
+    src: /etc/alternatives/zabbix-frontend-font
+    dest: /usr/share/zabbix/assets/fonts/graphfont.ttf
+    owner: root
+    group: root
+    state: link
+
 - name: Template alertscript for optional Slack notifications
   template:
     src: slack.sh.j2
