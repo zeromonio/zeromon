@@ -24,6 +24,15 @@ case "$vendor" in
         public_ipv4_url='http://169.254.169.254/metadata/v1/interfaces/public/0/ipv4/address'
         ;;
 
+    # Linode does not self-identify in dmidecode
+    # Linode also has no way to determine IP address or host name easily via StackScript
+    # So, just use "ip addr" for now...
+    'QEMU')
+#        public_hostname_url='' # WIP/TODO: figure out the .members.linode.com host name ideally
+#        public_ipv4_url=''
+        public_ipv4=$(ip addr show eth0 | fgrep 'inet ' | awk {'print $2'} | cut -d '/' -f1)
+        ;;
+
 esac
 
 # WIP/TODO: Take out this first check for "$public_hostname_url" being empty
@@ -40,7 +49,12 @@ then
 
 # Otherwise, just use the public IPv4 address
 else
-  public_ipv4=$(curl -sf "$public_ipv4_url")
+
+  if [ ! -z "$public_ipv4_url" ]
+  then
+    public_ipv4=$(curl -sf "$public_ipv4_url")
+  fi
+
   zabbix_url="$public_ipv4"
 fi
 

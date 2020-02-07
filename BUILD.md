@@ -1,7 +1,9 @@
 # Zeromon Build Documentation
 
 The following technical information is simply a reference for any one who may be curious.
-We create the Zeromon Amazon Machine Image and DigitalOcean Marketplace droplet snapshot on top of the respective vendor [Ubuntu 18.04 LTS](https://www.ubuntu.com/) images.
+We create the Zeromon Amazon Machine Image and DigitalOcean Marketplace Droplet snapshot on top of the respective vendor [Ubuntu 18.04 LTS](https://www.ubuntu.com/) images.
+
+_Note: The details below do not apply to Linode. Zeromon on Linode uses a Linode-provided Ubuntu 18.04 LTS image with a Linode StackScript._
 
 ## Preparation
 
